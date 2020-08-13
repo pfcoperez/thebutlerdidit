@@ -14,10 +14,24 @@ class ThreadDumpParsersSpec extends AnyFunSpec with Matchers with Inside {
     it("should parse thread description lines") {
       import SingleLineWhitespace._
 
-      val threadDescriptionLine = aThread.lines.dropWhile(_ == "").findFirst().get
+      val threadDescriptionLine = aThread.lines.toSeq.dropWhile(_ == "").head
 
       inside(parse(threadDescriptionLine, threadDescription(_))) {
         case Parsed.Success(x, _) =>
+      }
+
+      val wrongLines = Seq(
+        """"main" #1 prio=badf00d os_prio=0 tid=0x00007fb54004d000 nid=0x1c3d runnable [0x00007fb546c21000]""",
+        """"main" #1 os_prio=0 tid=0x00007fb54004d000 nid=0x1c3d runnable [0x00007fb546c21000]""",
+        """"main" #1 prio=5 tid=0x00007fb54004d000 nid=0x1c3d runnable [0x00007fb546c21000]""",
+        """"main" #1 prio=5 os_prio=0 tid=0x00007fb54004d000 nid=0x1c3d runnable [0x00007fb546c21000""",
+      )
+
+      wrongLines.foreach { line =>
+        withClue(s" malformed line: $line") {
+          val result = parse(line, threadDescription(_))
+          assert(!result.isSuccess)
+        }
       }
 
     }

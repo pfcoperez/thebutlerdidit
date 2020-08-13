@@ -2,6 +2,8 @@ package org.pfcoperez.thebutlerdidit
 
 import fastparse._
 import model.ObjectLockState
+import org.pfcoperez.thebutlerdidit.model.ThreadDescription
+import org.pfcoperez.thebutlerdidit.model.ThreadDescription.SimplifiedStatus
 
 object ThreadDumpParsers {
   import BasicParsers._
@@ -38,10 +40,14 @@ object ThreadDumpParsers {
     def osPriority[_ : P] = P("os_prio=" ~ intNumber)
     def threadAddress[_ : P] = P("tid=" ~ hexDec)
     def osThreadAddress[_ : P] = P("nid=" ~ hexDec)
-    def status[_ : P] = P("runnable" | "waiting on condition" | "waiting for monitor entry")
+    def status[_ : P] =
+      P(("runnable" | "waiting on condition" | "waiting for monitor entry").!)
+      .map(SimplifiedStatus.factories.apply)
     def stackPointer[_ : P] = P("[" ~ hexDec ~ "]")
 
-    def threadDescription[_ : P] = P(threadName ~ threadNo ~ priority ~ osPriority ~ threadAddress ~ osThreadAddress ~ status)
+    def threadDescription[_ : P] =
+      P(threadName ~ threadNo ~ priority ~ osPriority ~ threadAddress ~ osThreadAddress ~ status ~ stackPointer)
+        .map((ThreadDescription.apply _).tupled)
 
     def threadState[_ : P] = P(
       "java.lang.Thread.State:" ~ (

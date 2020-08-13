@@ -21,3 +21,10 @@ project/plugins/project/
 
 # Ensime specific
 .ensime*
+
+# vscode specific
+.vscode
+
+# Metals & Bloop
+.metals
+.bloop
