@@ -1,6 +1,8 @@
 package org.pfcoperez.thebutlerdidit.model
 
 import ThreadDescription._
+import org.pfcoperez.thebutlerdidit.model.ObjectLockState.LockedObject
+import org.pfcoperez.thebutlerdidit.model.ObjectLockState.LockRequest
 
 case class ThreadDescription(
     name: String,
@@ -10,7 +12,9 @@ case class ThreadDescription(
     address: BigInt,
     osAddress: BigInt,
     status: SimplifiedStatus,
-    stackPointer: BigInt
+    stackPointer: BigInt,
+    lockedBy: Set[BigInt] = Set.empty,
+    locking: Set[BigInt] = Set.empty
 )
 
 object ThreadDescription {

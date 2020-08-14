@@ -4,6 +4,8 @@ import fastparse._
 import model.ObjectLockState
 import org.pfcoperez.thebutlerdidit.model.ThreadDescription
 import org.pfcoperez.thebutlerdidit.model.ThreadDescription.SimplifiedStatus
+import org.pfcoperez.thebutlerdidit.model.ObjectLockState.LockedObject
+import org.pfcoperez.thebutlerdidit.model.ObjectLockState.LockRequest
 
 object ThreadDumpParsers {
   import BasicParsers._
@@ -31,8 +33,9 @@ object ThreadDumpParsers {
       }
   }
 
+  import MultiLineWhitespace._
+
   object ThreadElementsParsers {
-    import SingleLineWhitespace._
 
     def threadName[_ : P] = P( "\"" ~ CharsWhile(_ != '"').! ~ "\"")
     def threadNo[_ : P] = P("#" ~ intNumber)
@@ -47,21 +50,42 @@ object ThreadDumpParsers {
 
     def threadDescription[_ : P] =
       P(threadName ~ threadNo ~ priority ~ osPriority ~ threadAddress ~ osThreadAddress ~ status ~ stackPointer)
-        .map((ThreadDescription.apply _).tupled)
+        .map {
+          case (name, number, priority, osPriority, threadAddress, osThreadAddress, status, stackPointer) =>
+            ThreadDescription(name, number, priority, osPriority, threadAddress, osThreadAddress, status, stackPointer)
+        }
 
     def threadState[_ : P] = P(
       "java.lang.Thread.State:" ~ (
         "NEW" | "RUNNABLE" | "BLOCKED" | "WAITING" | "TIMED_WAITING" | "TERMINATED"
-        ).! ~ End
+        ).!
     ).map(Thread.State.valueOf)
 
-    def stackFrame[_ : P] = P("at" ~ AnyChar.rep(1) ~ End)
+    def stackFrame[_ : P] = P("at" ~ CharsWhile(_ != '(') ~ "(" ~ CharsWhile(_ != ')') ~ ")")
 
     def lockState[_ : P] = P(
-      StringIn("locked", "waiting to lock").! ~ "<" ~ hexDec ~ ">" ~ End
+      "-" ~ StringIn("locked", "waiting to lock").! ~ "<" ~ hexDec ~ ">" ~ "(" ~ CharsWhile(_ != ')') ~ ")"
     ).map { case (representation: String, address: BigInt) =>
       ObjectLockState.factories(representation)(address)
     }
+
+    def stackLine[_ : P] = P(stackFrame.!.map(_ => None) | lockState.map(Option.apply))
+  }
+
+  import ThreadElementsParsers._
+
+  def thread[_ : P] = P(threadDescription ~ threadState ~ stackLine.rep).map {
+    case (thread, state, stackLines) =>
+      val lockedBy = stackLines.collect {
+        case Some(locked: LockRequest) => locked.address
+      }
+      val locking = stackLines.collect {
+        case Some(locked: LockedObject) => locked.address
+      }
+      thread.copy(
+        lockedBy = lockedBy.toSet,
+        locking = locking.toSet
+      )
   }
 
 }

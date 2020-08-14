@@ -10,6 +10,7 @@ class ThreadDumpParsersSpec extends AnyFunSpec with Matchers with Inside {
 
   describe("ThreadElementsParsers") {
     import ThreadDumpParsers.ThreadElementsParsers._
+    import ThreadDumpParsers.thread
 
     it("should parse thread description lines") {
       import SingleLineWhitespace._
@@ -34,6 +35,18 @@ class ThreadDumpParsersSpec extends AnyFunSpec with Matchers with Inside {
         }
       }
 
+    }
+
+    it("should parse all the details for a given thread") {
+      import MultiLineWhitespace._
+
+      val result = parse(aThread, thread(_))
+      
+      inside(result) {
+        case Parsed.Success(x, _) =>
+          x.lockedBy.size shouldBe 1
+          x.locking.size shouldBe 3
+      }
     }
 
   }
@@ -88,6 +101,7 @@ object ThreadDumpParsersSpec {
       |    at ammonite.terminal.Terminal$.$anonfun$readLine$2(Terminal.scala:41)
       |    at ammonite.terminal.Terminal$$$Lambda$309/737945227.apply(Unknown Source)
       |    at ammonite.terminal.TTY$.withSttyOverride(Utils.scala:117)
+      |    - waiting to lock <0x0000000780a000b0> (a com.nbp.theplatform.threaddump.ThreadBlockedState)            
       |    at ammonite.terminal.Terminal$.readLine(Terminal.scala:41)
       |    at ammonite.repl.AmmoniteFrontEnd.readLine(AmmoniteFrontEnd.scala:133)
       |    at ammonite.repl.AmmoniteFrontEnd.action(AmmoniteFrontEnd.scala:25)
@@ -119,6 +133,6 @@ object ThreadDumpParsersSpec {
       |
       |   Locked ownable synchronizers:
       |    - None
-      |""".stripMargin
+      |""".stripMargin.trim()
 
 }
