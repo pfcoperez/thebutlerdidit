@@ -64,9 +64,9 @@ object ThreadDumpParsers {
     def stackFrame[_ : P] = P("at" ~ CharsWhile(_ != '(') ~ "(" ~ CharsWhile(_ != ')') ~ ")")
 
     def lockState[_ : P] = P(
-      "-" ~ StringIn("locked", "waiting to lock").! ~ "<" ~ hexDec ~ ">" ~ "(" ~ CharsWhile(_ != ')') ~ ")"
-    ).map { case (representation: String, address: BigInt) =>
-      ObjectLockState.factories(representation)(address)
+      "-" ~ StringIn("locked", "waiting to lock").! ~ "<" ~ hexDec ~ ">" ~ "(" ~ "a" ~ CharsWhile(_ != ')').! ~ ")"
+    ).map { case (representation: String, address: BigInt, className: String) =>
+      ObjectLockState.factories(representation)(address, className)
     }
 
     def stackLine[_ : P] = P(stackFrame.!.map(_ => None) | lockState.map(Option.apply))

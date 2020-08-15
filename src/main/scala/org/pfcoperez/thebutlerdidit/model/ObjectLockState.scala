@@ -2,17 +2,18 @@ package org.pfcoperez.thebutlerdidit.model
 
 sealed trait ObjectLockState {
   def address: BigInt
+  def className: String
 }
 
 object ObjectLockState {
-  val factories: Map[String, BigInt => ObjectLockState] = Map(
+  val factories: Map[String, (BigInt, String) => ObjectLockState] = Map(
     "locked" -> LockedObject.apply,
     "waiting to lock" -> LockRequest.apply
   )
 
   val representations: Seq[String] = factories.keys.toSeq
 
-  case class LockedObject(address: BigInt) extends ObjectLockState
-  case class LockRequest(address: BigInt) extends ObjectLockState
+  case class LockedObject(address: BigInt, className: String) extends ObjectLockState
+  case class LockRequest(address: BigInt, className: String) extends ObjectLockState
 }
 
