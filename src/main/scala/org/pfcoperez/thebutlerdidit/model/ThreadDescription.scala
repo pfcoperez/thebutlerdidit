@@ -23,9 +23,15 @@ object ThreadDescription {
     }
 
     object SimplifiedStatus {
-        val factories: Map[String, SimplifiedStatus] = Seq(
-            Runnable, WaitingForMonitor, WaitingOnCondition
-        ).map(x => x.representation -> x).toMap
+        def factories(rep: String): SimplifiedStatus = {
+            val static = Seq(
+                Runnable, WaitingForMonitor, WaitingOnCondition
+            ).map(x => x.representation -> x).toMap
+
+            val tag = if (rep.startsWith("in")) WaitingForMonitor.representation else rep
+
+            static(tag)
+        }
     }
 
     case object Runnable extends SimplifiedStatus {

@@ -6,6 +6,7 @@ import org.pfcoperez.thebutlerdidit.model.ThreadDescription
 import org.pfcoperez.thebutlerdidit.model.ThreadDescription.SimplifiedStatus
 import org.pfcoperez.thebutlerdidit.model.ObjectLockState.LockedObject
 import org.pfcoperez.thebutlerdidit.model.ObjectLockState.LockRequest
+import org.pfcoperez.thebutlerdidit.model.Report
 
 object ThreadDumpParsers {
   import BasicParsers._
@@ -43,13 +44,18 @@ object ThreadDumpParsers {
     def osPriority[_ : P] = P("os_prio=" ~ intNumber)
     def threadAddress[_ : P] = P("tid=" ~ hexDec)
     def osThreadAddress[_ : P] = P("nid=" ~ hexDec)
+
+    def parameters[_ : P] = P("(" ~ CharsWhile(_ != ')', 0) ~ ")").!
+
+    def method[_ : P] = P(CharsWhile(_ != '(') ~ parameters).!
+
     def status[_ : P] =
-      P(("runnable" | "waiting on condition" | "waiting for monitor entry").!)
-      .map(SimplifiedStatus.factories.apply)
+      P(("runnable" | "waiting on condition" | "waiting for monitor entry" | "in" ~ method).!)
+      .map(SimplifiedStatus.factories)
     def stackPointer[_ : P] = P("[" ~ hexDec ~ "]")
 
     def threadDescription[_ : P] =
-      P(threadName ~ threadNo ~ priority ~ osPriority ~ threadAddress ~ osThreadAddress ~ status ~ stackPointer)
+      P(threadName ~ threadNo ~ "daemon".? ~ priority ~ osPriority ~ threadAddress ~ osThreadAddress ~ status ~ stackPointer)
         .map {
           case (name, number, priority, osPriority, threadAddress, osThreadAddress, status, stackPointer) =>
             ThreadDescription(name, number, priority, osPriority, threadAddress, osThreadAddress, status, stackPointer)
@@ -58,24 +64,31 @@ object ThreadDumpParsers {
     def threadState[_ : P] = P(
       "java.lang.Thread.State:" ~ (
         "NEW" | "RUNNABLE" | "BLOCKED" | "WAITING" | "TIMED_WAITING" | "TERMINATED"
-        ).!
-    ).map(Thread.State.valueOf)
+        ).! ~ parameters.?
+    ).map { case (st, _) => Thread.State.valueOf(st) }
 
-    def stackFrame[_ : P] = P("at" ~ CharsWhile(_ != '(') ~ "(" ~ CharsWhile(_ != ')') ~ ")")
+    def stackFrame[_ : P] = P("at" ~ method)
 
     def lockState[_ : P] = P(
-      "-" ~ StringIn("locked", "waiting to lock").! ~ "<" ~ hexDec ~ ">" ~ "(" ~ "a" ~ CharsWhile(_ != ')').! ~ ")"
+      "-" ~ StringIn(
+        "locked",
+        "waiting to lock",
+        "waiting to re-lock in wait()",
+        "waiting on"
+      ).! ~ "<" ~ hexDec ~ ">" ~ "(" ~ "a" ~ CharsWhile(_ != ')').! ~ ")"
     ).map { case (representation: String, address: BigInt, className: String) =>
       ObjectLockState.factories(representation)(address, className)
     }
 
-    def stackLine[_ : P] = P(stackFrame.!.map(_ => None) | lockState.map(Option.apply))
+    def stackLine[_ : P] = P((stackFrame | "- None" | "No compile task").!.map(_ => None) | lockState.map(Option.apply))
+
+    def lockedOwnableSyncs[_ : P] = P("Locked ownable synchronizers:" ~ stackLine.rep)
   }
 
   import ThreadElementsParsers._
 
-  def thread[_ : P] = P(threadDescription ~ threadState ~ stackLine.rep).map {
-    case (thread, state, stackLines) =>
+  def thread[_ : P] = P(threadDescription ~ threadState ~ stackLine.rep ~ lockedOwnableSyncs).map {
+    case (thread, state, stackLines, _) =>
       val lockedBy = stackLines.collect {
         case Some(locked: LockRequest) => locked.address
       }
@@ -88,4 +101,17 @@ object ThreadDumpParsers {
       )
   }
 
+  def header[_ : P] = P(CharsWhile(_ != '"'))
+
+  def jvmThread[_ : P] = P(threadName ~ osPriority ~ threadAddress ~ osThreadAddress ~ status) 
+
+  def threads[_ : P] = P(thread.rep ~ jvmThread.rep).map(_._1)
+
+  def jni[_ : P] = P("JNI global references:" ~ intNumber)
+
+  def unusedTail[_ : P] = P(AnyChar.rep ~ End)
+
+  def report[_ : P] = P(header ~ threads ~ jvmThread.rep ~ jni.? ~ unusedTail.? ~ End).map { t =>
+    Report(t._1)
+  }
 }
