@@ -46,6 +46,19 @@ class SparseGraph[NodeTag, EdgeTag] private (
         addEdge(from, to, tag)
     }
 
+    def renderGraphviz: String = {
+
+        //val dagArcs = contents.split("\n").toSeq.flatMap(processLine)
+        val dagArcs = Seq.empty // TODO
+
+        s"""
+        |digraph {
+        |  overlap=false;
+        |  node [shape=box,style=filled];
+        |  sep = "+60,60";
+        |  ${dagArcs.mkString("\n")}
+        |}""".stripMargin
+    }
 }
 
 object SparseGraph {
