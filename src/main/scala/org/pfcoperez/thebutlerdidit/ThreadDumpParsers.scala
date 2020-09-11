@@ -114,4 +114,6 @@ object ThreadDumpParsers {
   def report[_ : P] = P(header ~ threads ~ jvmThread.rep ~ jni.? ~ unusedTail.? ~ End).map { t =>
     Report(t._1)
   }
+
+  def parseReportString(str: String): Parsed[Report] = parse(str, report(_))
 }

@@ -45,8 +45,12 @@ class SparseGraph[NodeTag, EdgeTag] private (
         val ((from, tag), to) = edge
         addEdge(from, to, tag)
     }
+
 }
 
 object SparseGraph {
     private type InternalRep[NodeTag, EdgeTag] = Map[NodeTag, Map[NodeTag, Set[EdgeTag]]]
+
+    def empty[NodeTag, EdgeTag]: SparseGraph[NodeTag, EdgeTag] =
+        new SparseGraph(Map.empty)
 }
