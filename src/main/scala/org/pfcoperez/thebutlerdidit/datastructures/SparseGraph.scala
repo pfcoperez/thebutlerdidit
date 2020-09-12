@@ -48,15 +48,23 @@ class SparseGraph[NodeTag, EdgeTag] private (
 
     def renderGraphviz: String = {
 
-        //val dagArcs = contents.split("\n").toSeq.flatMap(processLine)
-        val dagArcs = Seq.empty // TODO
+        val nodesStrs = nodes.keys.map { nodeTag =>
+            s""""$nodeTag";"""
+        }
+
+        val arcsStrs = for {
+            (from, edges) <- nodes
+            (to, labels) <- edges
+            label <- labels
+        } yield s"""  "${from}" -> "$to" [ label="0x${label.formatted("%x")}" ];"""
 
         s"""
         |digraph {
         |  overlap=false;
         |  node [shape=box,style=filled];
-        |  sep = "+60,60";
-        |  ${dagArcs.mkString("\n")}
+        |  sep = "+80,80";
+        |  ${nodesStrs.mkString("\n")}
+        |  ${arcsStrs.mkString("\n")}
         |}""".stripMargin
     }
 }

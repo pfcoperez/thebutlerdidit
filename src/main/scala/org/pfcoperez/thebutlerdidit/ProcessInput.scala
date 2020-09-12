@@ -15,7 +15,7 @@ object ProcessInput extends App {
         { case problem => println(problem) },
         {
             case (report, _) =>
-                println(report.asGraph)
+                println(report.asGraph.renderGraphviz)
         }
     )
 
