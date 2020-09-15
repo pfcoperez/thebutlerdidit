@@ -111,7 +111,7 @@ object ThreadDumpParsers {
 
   def unusedTail[_ : P] = P(AnyChar.rep ~ End)
 
-  def report[_ : P] = P(header ~ threads ~ jvmThread.rep ~ jni.? ~ unusedTail.? ~ End).map { t =>
+  def report[_ : P] = P(header ~ threads ~ jvmThread.rep ~ jni ~ unusedTail.? ~ End).map { t =>
     Report(t._1)
   }
 
