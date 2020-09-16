@@ -69,20 +69,22 @@ object ThreadDumpParsers {
 
     def stackFrame[_ : P] = P("at" ~ method)
 
+    def addressAndClass[_ : P] = P("<" ~ hexDec ~ ">" ~ "(" ~ "a" ~ CharsWhile(_ != ')').! ~ ")")
+
     def lockState[_ : P] = P(
       "-" ~ StringIn(
         "locked",
         "waiting to lock",
         "waiting to re-lock in wait()",
         "waiting on"
-      ).! ~ "<" ~ hexDec ~ ">" ~ "(" ~ "a" ~ CharsWhile(_ != ')').! ~ ")"
-    ).map { case (representation: String, address: BigInt, className: String) =>
+      ).! ~ addressAndClass
+    ).map { case (representation: String, (address: BigInt, className: String)) =>
       ObjectLockState.factories(representation)(address, className)
     }
 
     def stackLine[_ : P] = P((stackFrame | "- None" | "No compile task").!.map(_ => None) | lockState.map(Option.apply))
 
-    def lockedOwnableSyncs[_ : P] = P("Locked ownable synchronizers:" ~ stackLine.rep)
+    def lockedOwnableSyncs[_ : P] = P("Locked ownable synchronizers:" ~ (stackLine | ("-" ~ addressAndClass)).rep)
   }
 
   import ThreadElementsParsers._
