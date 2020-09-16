@@ -1,6 +1,6 @@
 package org.pfcoperez.thebutlerdidit
 
-import ThreadDumpParsers.parseReportString
+import org.pfcoperez.thebutlerdidit.ThreadDumpParsers.parseReportString
 import scala.io.Source
 
 

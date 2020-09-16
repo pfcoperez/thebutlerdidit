@@ -4,11 +4,8 @@ import org.scalatest.Inside
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 import fastparse._
-import java.io.File
 
 import org.pfcoperez.thebutlerdidit.model._
-import java.nio.file.Path
-import java.nio.file.Paths
 
 class ThreadDumpParsersSpec extends AnyFunSpec with Matchers with Inside {
   import ThreadDumpParsersSpec._
@@ -52,31 +49,6 @@ class ThreadDumpParsersSpec extends AnyFunSpec with Matchers with Inside {
           x.lockedBy.size shouldBe 1
           x.locking.size shouldBe 3
       }
-    }
-
-    it("should parse complete reports") {
-      import MultiLineWhitespace._
-      import ThreadDumpParsers.report
-
-      val samplesDir = new File(
-        Thread.currentThread().getContextClassLoader().getResource("samples/sample01").getPath()
-      ).getParentFile()
-
-      samplesDir.listFiles().foreach { sampleFile =>
-        withClue(s" Trying sample: ${sampleFile.getName()} ") {
-          val contentsStr = scala.io.Source.fromFile(sampleFile)(scala.io.Codec.UTF8).getLines().mkString("\n")
-
-          val result = parse(contentsStr, report(_))
-
-          inside(result) {
-            case Parsed.Success(Report(threads), _) =>
-              assert(threads.size > 1)
-          }
-        }
-      }
-
-      
-
     }
 
   }

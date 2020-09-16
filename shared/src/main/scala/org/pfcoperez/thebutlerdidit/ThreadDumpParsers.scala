@@ -65,7 +65,7 @@ object ThreadDumpParsers {
       "java.lang.Thread.State:" ~ (
         "NEW" | "RUNNABLE" | "BLOCKED" | "WAITING" | "TIMED_WAITING" | "TERMINATED"
         ).! ~ parameters.?
-    ).map { case (st, _) => Thread.State.valueOf(st) }
+    ).map(_._1)
 
     def stackFrame[_ : P] = P("at" ~ method)
 
@@ -90,7 +90,7 @@ object ThreadDumpParsers {
   import ThreadElementsParsers._
 
   def thread[_ : P] = P(threadDescription ~ threadState ~ stackLine.rep ~ lockedOwnableSyncs).map {
-    case (thread, state, stackLines, _) =>
+    case (thread, _, stackLines, _) =>
       val lockedBy = stackLines.collect {
         case Some(locked: LockRequest) => locked.address
       }
