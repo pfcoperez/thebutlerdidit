@@ -56,7 +56,7 @@ class SparseGraph[NodeTag, EdgeTag] private (
             (from, edges) <- nodes
             (to, labels) <- edges
             label <- labels
-        } yield s"""  "${from}" -> "$to" [ label="0x${label.formatted("%x")}" ];"""
+        } yield s"""  "${from}" -> "$to" [ label="$label" ];"""
 
         s"""
         |digraph {

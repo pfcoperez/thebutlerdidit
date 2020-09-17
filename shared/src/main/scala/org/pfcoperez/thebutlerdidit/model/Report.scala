@@ -4,6 +4,17 @@ import org.pfcoperez.thebutlerdidit.datastructures.SparseGraph
 import Report._
 
 case class Report(threads: Seq[ThreadDescription]) {
+
+    // Method replacing `x.formatted("%x")` which seems to be buggy in Scala.js
+    private def bigIntToHexStr(x: BigInt): String = {
+        val digitChar = (10 to 15).zip('a' to 'z').toMap
+        def digits(x: BigInt, acc: List[Int]): List[Int] = {
+            if (x == 0) acc
+            else digits(x/16, (x % 16).toInt :: acc)
+        }
+        "0x" + digits(x, Nil).map(d => s"${digitChar.getOrElse(d, d)}").mkString
+    }
+
     def asGraph: SparseGraph[ThreadId, ObjectReference] = {
 
         def threadId(thread: ThreadDescription): String = {
@@ -23,7 +34,7 @@ case class Report(threads: Seq[ThreadDescription]) {
                 thread.lockedBy.foldLeft(graph + to) {
                     case (current, objAddr) =>
                         val from = objectToOwner.getOrElse(objAddr, unknownThreadId)
-                        current + (from -> objAddr -> to)
+                        current + (from -> bigIntToHexStr(objAddr) -> to)
                 }
         }
     }
@@ -31,7 +42,7 @@ case class Report(threads: Seq[ThreadDescription]) {
 
 object Report {
     type ThreadId = String
-    type ObjectReference = BigInt
+    type ObjectReference = String
 
     val unknownThreadId = "UNKNOWN"
 }
