@@ -25,7 +25,7 @@ object ThreadDescription {
     object SimplifiedStatus {
         def factories(rep: String): SimplifiedStatus = {
             val static = Seq(
-                Runnable, WaitingForMonitor, WaitingOnCondition
+                Runnable, WaitingForMonitor, WaitingOnCondition, Sleeping
             ).map(x => x.representation -> x).toMap
 
             val tag = if (rep.startsWith("in")) WaitingForMonitor.representation else rep
@@ -43,4 +43,8 @@ object ThreadDescription {
     case object WaitingForMonitor extends SimplifiedStatus {
         def representation: String = "waiting for monitor entry"
     }
+    case object Sleeping extends SimplifiedStatus {
+        def representation: String = "sleeping"
+    }
+    
 }

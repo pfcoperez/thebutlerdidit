@@ -10,7 +10,8 @@ object ObjectLockState {
     "locked" -> LockedObject.apply,
     "waiting to lock" -> LockRequest.apply,
     "waiting to re-lock in wait()" -> LockRequest.apply,
-    "waiting on" -> LockRequest.apply
+    "waiting on" -> LockRequest.apply,
+    "parking to wait for" -> LockRequest.apply
   )
 
   val representations: Seq[String] = factories.keys.toSeq

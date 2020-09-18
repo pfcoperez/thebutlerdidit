@@ -50,7 +50,7 @@ object ThreadDumpParsers {
     def method[_ : P] = P(CharsWhile(_ != '(') ~ parameters).!
 
     def status[_ : P] =
-      P(("runnable" | "waiting on condition" | "waiting for monitor entry" | "in" ~ method).!)
+      P(("runnable" | "waiting on condition" | "waiting for monitor entry" | "in" ~ method | "sleeping").!)
       .map(SimplifiedStatus.factories)
     def stackPointer[_ : P] = P("[" ~ hexDec ~ "]")
 
@@ -76,7 +76,8 @@ object ThreadDumpParsers {
         "locked",
         "waiting to lock",
         "waiting to re-lock in wait()",
-        "waiting on"
+        "waiting on",
+        "parking to wait for"
       ).! ~ addressAndClass
     ).map { case (representation: String, (address: BigInt, className: String)) =>
       ObjectLockState.factories(representation)(address, className)
