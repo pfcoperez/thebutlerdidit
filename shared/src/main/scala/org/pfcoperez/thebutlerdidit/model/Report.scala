@@ -33,8 +33,9 @@ case class Report(threads: Seq[ThreadDescription]) {
                 val to = threadId(thread)
                 thread.lockedBy.foldLeft(graph + to) {
                     case (current, objAddr) =>
-                        val from = objectToOwner.getOrElse(objAddr, unknownThreadId)
-                        current + (from -> bigIntToHexStr(objAddr) -> to)
+                        val hexStr = bigIntToHexStr(objAddr)
+                        val from = objectToOwner.getOrElse(objAddr, s"$unknownThreadId - $hexStr")
+                        current + (from -> hexStr -> to)
                 }
         }
     }
