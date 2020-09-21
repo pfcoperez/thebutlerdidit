@@ -1,0 +1,833 @@
+2020-09-21 10:56:14
+Full thread dump OpenJDK 64-Bit Server VM (25.265-b01 mixed mode):
+
+"Attach Listener" #269 daemon prio=9 os_prio=0 tid=0x00007f908c001000 nid=0x36835 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+   Locked ownable synchronizers:
+	- None
+
+"MissScarlett$" #268 prio=5 os_prio=0 tid=0x00007f8fc0002800 nid=0x3679d waiting for monitor entry [0x00007f8fc93fa000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:29)
+	- waiting to lock <0x00000000f8ad1f40> (a org.pfcoperez.thebutlerdidit.SampleApp$Revolver$)
+	at org.pfcoperez.thebutlerdidit.SampleApp$MissScarlett$$anonfun$$lessinit$greater$1.$anonfun$apply$1(SampleApp.scala:51)
+	at org.pfcoperez.thebutlerdidit.SampleApp$MissScarlett$$anonfun$$lessinit$greater$1$$Lambda$5734/743430739.apply$mcV$sp(Unknown Source)
+	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:30)
+	- locked <0x00000000f8bb0268> (a org.pfcoperez.thebutlerdidit.SampleApp$Candlestick$)
+	at org.pfcoperez.thebutlerdidit.SampleApp$MissScarlett$$anonfun$$lessinit$greater$1.apply$mcV$sp(SampleApp.scala:50)
+	at org.pfcoperez.thebutlerdidit.SampleApp$Suspect.run(SampleApp.scala:36)
+
+   Locked ownable synchronizers:
+	- None
+
+"RevGreen$" #267 prio=5 os_prio=0 tid=0x00007f8fe4011800 nid=0x3679c waiting for monitor entry [0x00007f8fc97fb000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:29)
+	- waiting to lock <0x00000000f8bb0268> (a org.pfcoperez.thebutlerdidit.SampleApp$Candlestick$)
+	at org.pfcoperez.thebutlerdidit.SampleApp$RevGreen$$anonfun$$lessinit$greater$2.$anonfun$apply$3(SampleApp.scala:62)
+	at org.pfcoperez.thebutlerdidit.SampleApp$RevGreen$$anonfun$$lessinit$greater$2$$Lambda$5740/518732161.apply$mcV$sp(Unknown Source)
+	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:30)
+	- locked <0x00000000f8b8b810> (a org.pfcoperez.thebutlerdidit.SampleApp$Dagger$)
+	at org.pfcoperez.thebutlerdidit.SampleApp$RevGreen$$anonfun$$lessinit$greater$2.apply$mcV$sp(SampleApp.scala:61)
+	at org.pfcoperez.thebutlerdidit.SampleApp$Suspect.run(SampleApp.scala:36)
+
+   Locked ownable synchronizers:
+	- None
+
+"ColonelMustard$" #266 prio=5 os_prio=0 tid=0x00007f8ff001a000 nid=0x3679b waiting for monitor entry [0x00007f8fc9bfc000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:29)
+	- waiting to lock <0x00000000f8b8b810> (a org.pfcoperez.thebutlerdidit.SampleApp$Dagger$)
+	at org.pfcoperez.thebutlerdidit.SampleApp$ColonelMustard$$anonfun$$lessinit$greater$3.$anonfun$apply$5(SampleApp.scala:74)
+	at org.pfcoperez.thebutlerdidit.SampleApp$ColonelMustard$$anonfun$$lessinit$greater$3$$Lambda$5741/1192721098.apply$mcV$sp(Unknown Source)
+	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:30)
+	- locked <0x00000000f8b32630> (a org.pfcoperez.thebutlerdidit.SampleApp$LeadPipe$)
+	at org.pfcoperez.thebutlerdidit.SampleApp$ColonelMustard$$anonfun$$lessinit$greater$3.apply$mcV$sp(SampleApp.scala:73)
+	at org.pfcoperez.thebutlerdidit.SampleApp$Suspect.run(SampleApp.scala:36)
+
+   Locked ownable synchronizers:
+	- None
+
+"MrsWhite$" #265 prio=5 os_prio=0 tid=0x00007f8fd000c800 nid=0x3679a waiting for monitor entry [0x00007f90c5bf4000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:29)
+	- waiting to lock <0x00000000f8aa4930> (a org.pfcoperez.thebutlerdidit.SampleApp$Rope$)
+	at org.pfcoperez.thebutlerdidit.SampleApp$MrsWhite$$anonfun$$lessinit$greater$6.$anonfun$apply$11(SampleApp.scala:106)
+	at org.pfcoperez.thebutlerdidit.SampleApp$MrsWhite$$anonfun$$lessinit$greater$6$$Lambda$5732/1029770374.apply$mcV$sp(Unknown Source)
+	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:30)
+	- locked <0x00000000f8aff330> (a org.pfcoperez.thebutlerdidit.SampleApp$Wrench$)
+	at org.pfcoperez.thebutlerdidit.SampleApp$MrsWhite$$anonfun$$lessinit$greater$6.apply$mcV$sp(SampleApp.scala:105)
+	at org.pfcoperez.thebutlerdidit.SampleApp$Suspect.run(SampleApp.scala:36)
+
+   Locked ownable synchronizers:
+	- None
+
+"ProfessorPlum$" #264 prio=5 os_prio=0 tid=0x00007f902400f000 nid=0x36799 waiting for monitor entry [0x00007f8fc9ffd000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:29)
+	- waiting to lock <0x00000000f8b32630> (a org.pfcoperez.thebutlerdidit.SampleApp$LeadPipe$)
+	at org.pfcoperez.thebutlerdidit.SampleApp$ProfessorPlum$$anonfun$$lessinit$greater$4.$anonfun$apply$7(SampleApp.scala:86)
+	at org.pfcoperez.thebutlerdidit.SampleApp$ProfessorPlum$$anonfun$$lessinit$greater$4$$Lambda$5731/839269867.apply$mcV$sp(Unknown Source)
+	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:30)
+	- locked <0x00000000f8ad1f40> (a org.pfcoperez.thebutlerdidit.SampleApp$Revolver$)
+	at org.pfcoperez.thebutlerdidit.SampleApp$ProfessorPlum$$anonfun$$lessinit$greater$4.apply$mcV$sp(SampleApp.scala:82)
+	at org.pfcoperez.thebutlerdidit.SampleApp$Suspect.run(SampleApp.scala:36)
+
+   Locked ownable synchronizers:
+	- None
+
+"MrsPeakcock$" #263 prio=5 os_prio=0 tid=0x00007f902400c800 nid=0x36798 waiting for monitor entry [0x00007f8fca3fe000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:29)
+	- waiting to lock <0x00000000f8aff330> (a org.pfcoperez.thebutlerdidit.SampleApp$Wrench$)
+	at org.pfcoperez.thebutlerdidit.SampleApp$MrsPeakcock$$anonfun$$lessinit$greater$5.$anonfun$apply$9(SampleApp.scala:97)
+	at org.pfcoperez.thebutlerdidit.SampleApp$MrsPeakcock$$anonfun$$lessinit$greater$5$$Lambda$5729/189587566.apply$mcV$sp(Unknown Source)
+	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:30)
+	- locked <0x00000000f8aa4930> (a org.pfcoperez.thebutlerdidit.SampleApp$Rope$)
+	at org.pfcoperez.thebutlerdidit.SampleApp$MrsPeakcock$$anonfun$$lessinit$greater$5.apply$mcV$sp(SampleApp.scala:93)
+	at org.pfcoperez.thebutlerdidit.SampleApp$Suspect.run(SampleApp.scala:36)
+
+   Locked ownable synchronizers:
+	- None
+
+"Timer-0" #261 daemon prio=5 os_prio=0 tid=0x00007f8fe0a75800 nid=0x36794 in Object.wait() [0x00007f90bfffe000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Object.wait(Object.java:502)
+	at java.util.TimerThread.mainLoop(Timer.java:526)
+	- locked <0x00000000f7614f40> (a java.util.TaskQueue)
+	at java.util.TimerThread.run(Timer.java:505)
+
+   Locked ownable synchronizers:
+	- None
+
+"pool-23-thread-13" #260 prio=5 os_prio=0 tid=0x00007f9101280800 nid=0x3678a waiting on condition [0x00007f9091405000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000fc753828> (a java.util.concurrent.SynchronousQueue$TransferStack)
+	at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+	at java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill(SynchronousQueue.java:460)
+	at java.util.concurrent.SynchronousQueue$TransferStack.transfer(SynchronousQueue.java:362)
+	at java.util.concurrent.SynchronousQueue.poll(SynchronousQueue.java:941)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1073)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+   Locked ownable synchronizers:
+	- None
+
+"pool-23-thread-12" #259 prio=5 os_prio=0 tid=0x00007f910127f800 nid=0x36789 waiting on condition [0x00007f9091e07000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000fc753828> (a java.util.concurrent.SynchronousQueue$TransferStack)
+	at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+	at java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill(SynchronousQueue.java:460)
+	at java.util.concurrent.SynchronousQueue$TransferStack.transfer(SynchronousQueue.java:362)
+	at java.util.concurrent.SynchronousQueue.poll(SynchronousQueue.java:941)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1073)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+   Locked ownable synchronizers:
+	- None
+
+"pool-23-thread-11" #258 prio=5 os_prio=0 tid=0x00007f9103339000 nid=0x36788 waiting on condition [0x00007f9092208000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000fc753828> (a java.util.concurrent.SynchronousQueue$TransferStack)
+	at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+	at java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill(SynchronousQueue.java:460)
+	at java.util.concurrent.SynchronousQueue$TransferStack.transfer(SynchronousQueue.java:362)
+	at java.util.concurrent.SynchronousQueue.poll(SynchronousQueue.java:941)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1073)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+   Locked ownable synchronizers:
+	- None
+
+"pool-23-thread-10" #257 prio=5 os_prio=0 tid=0x00007f9103338000 nid=0x36787 waiting on condition [0x00007f909300b000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000fc753828> (a java.util.concurrent.SynchronousQueue$TransferStack)
+	at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+	at java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill(SynchronousQueue.java:460)
+	at java.util.concurrent.SynchronousQueue$TransferStack.transfer(SynchronousQueue.java:362)
+	at java.util.concurrent.SynchronousQueue.poll(SynchronousQueue.java:941)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1073)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+   Locked ownable synchronizers:
+	- None
+
+"pool-23-thread-9" #256 prio=5 os_prio=0 tid=0x00007f9103337000 nid=0x36786 waiting on condition [0x00007f90bc7f0000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000fc753828> (a java.util.concurrent.SynchronousQueue$TransferStack)
+	at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+	at java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill(SynchronousQueue.java:460)
+	at java.util.concurrent.SynchronousQueue$TransferStack.transfer(SynchronousQueue.java:362)
+	at java.util.concurrent.SynchronousQueue.poll(SynchronousQueue.java:941)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1073)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+   Locked ownable synchronizers:
+	- None
+
+"pool-23-thread-8" #255 prio=5 os_prio=0 tid=0x00007f9103335800 nid=0x36785 waiting on condition [0x00007f90bdffa000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000fc753828> (a java.util.concurrent.SynchronousQueue$TransferStack)
+	at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+	at java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill(SynchronousQueue.java:460)
+	at java.util.concurrent.SynchronousQueue$TransferStack.transfer(SynchronousQueue.java:362)
+	at java.util.concurrent.SynchronousQueue.poll(SynchronousQueue.java:941)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1073)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+   Locked ownable synchronizers:
+	- None
+
+"pool-23-thread-7" #254 prio=5 os_prio=0 tid=0x00007f9103334800 nid=0x36784 waiting on condition [0x00007f9092809000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000fc753828> (a java.util.concurrent.SynchronousQueue$TransferStack)
+	at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+	at java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill(SynchronousQueue.java:460)
+	at java.util.concurrent.SynchronousQueue$TransferStack.transfer(SynchronousQueue.java:362)
+	at java.util.concurrent.SynchronousQueue.poll(SynchronousQueue.java:941)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1073)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+   Locked ownable synchronizers:
+	- None
+
+"pool-23-thread-6" #253 prio=5 os_prio=0 tid=0x00007f9103333800 nid=0x36783 waiting on condition [0x00007f90bcbf1000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000fc753828> (a java.util.concurrent.SynchronousQueue$TransferStack)
+	at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+	at java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill(SynchronousQueue.java:460)
+	at java.util.concurrent.SynchronousQueue$TransferStack.transfer(SynchronousQueue.java:362)
+	at java.util.concurrent.SynchronousQueue.poll(SynchronousQueue.java:941)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1073)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+   Locked ownable synchronizers:
+	- None
+
+"pool-23-thread-5" #252 prio=5 os_prio=0 tid=0x00007f9103ce2800 nid=0x36782 waiting on condition [0x00007f90bcff2000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000fc753828> (a java.util.concurrent.SynchronousQueue$TransferStack)
+	at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+	at java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill(SynchronousQueue.java:460)
+	at java.util.concurrent.SynchronousQueue$TransferStack.transfer(SynchronousQueue.java:362)
+	at java.util.concurrent.SynchronousQueue.poll(SynchronousQueue.java:941)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1073)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+   Locked ownable synchronizers:
+	- None
+
+"pool-23-thread-4" #251 prio=5 os_prio=0 tid=0x00007f9103ce1800 nid=0x36781 waiting on condition [0x00007f90bf1fc000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000fc753828> (a java.util.concurrent.SynchronousQueue$TransferStack)
+	at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+	at java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill(SynchronousQueue.java:460)
+	at java.util.concurrent.SynchronousQueue$TransferStack.transfer(SynchronousQueue.java:362)
+	at java.util.concurrent.SynchronousQueue.poll(SynchronousQueue.java:941)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1073)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+   Locked ownable synchronizers:
+	- None
+
+"task-progress-report-thread" #250 daemon prio=5 os_prio=0 tid=0x00007f8fe000a800 nid=0x36780 waiting on condition [0x00007f90be5fb000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at sbt.internal.TaskProgress$ProgressThread.run(TaskProgress.scala:37)
+
+   Locked ownable synchronizers:
+	- None
+
+"pool-23-thread-3" #249 prio=5 os_prio=0 tid=0x00007f9103ce0800 nid=0x3677f waiting on condition [0x00007f90bd3f3000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000fc753828> (a java.util.concurrent.SynchronousQueue$TransferStack)
+	at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+	at java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill(SynchronousQueue.java:460)
+	at java.util.concurrent.SynchronousQueue$TransferStack.transfer(SynchronousQueue.java:362)
+	at java.util.concurrent.SynchronousQueue.poll(SynchronousQueue.java:941)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1073)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+   Locked ownable synchronizers:
+	- None
+
+"pool-23-thread-2" #248 prio=5 os_prio=0 tid=0x00007f9103cdf800 nid=0x3677e waiting on condition [0x00007f9092c0a000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000fc753828> (a java.util.concurrent.SynchronousQueue$TransferStack)
+	at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+	at java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill(SynchronousQueue.java:460)
+	at java.util.concurrent.SynchronousQueue$TransferStack.transfer(SynchronousQueue.java:362)
+	at java.util.concurrent.SynchronousQueue.poll(SynchronousQueue.java:941)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1073)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+   Locked ownable synchronizers:
+	- None
+
+"pool-23-thread-1" #247 prio=5 os_prio=0 tid=0x00007f9103cdf000 nid=0x3677d in Object.wait() [0x00007f90bdbf4000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Thread.join(Thread.java:1252)
+	- locked <0x00000000f8a7ce18> (a org.pfcoperez.thebutlerdidit.SampleApp$ProfessorPlum$)
+	at java.lang.Thread.join(Thread.java:1326)
+	at sbt.TrapExit$.sbt$TrapExit$$waitOnThread(TrapExit.scala:90)
+	at sbt.TrapExit.$anonfun$waitForExit$1(TrapExit.scala:205)
+	at sbt.TrapExit.$anonfun$waitForExit$1$adapted(TrapExit.scala:199)
+	at sbt.TrapExit$$Lambda$5720/687318138.apply(Unknown Source)
+	at sbt.TrapExit$App.$anonfun$processThreads$2(TrapExit.scala:337)
+	at sbt.TrapExit$App.$anonfun$processThreads$2$adapted(TrapExit.scala:332)
+	at sbt.TrapExit$App$$Lambda$5726/1427711091.apply(Unknown Source)
+	at scala.collection.TraversableLike$WithFilter.$anonfun$foreach$1(TraversableLike.scala:877)
+	at scala.collection.TraversableLike$WithFilter$$Lambda$402/2041779645.apply(Unknown Source)
+	at scala.collection.Iterator.foreach(Iterator.scala:941)
+	at scala.collection.Iterator.foreach$(Iterator.scala:941)
+	at scala.collection.concurrent.TrieMapIterator.foreach(TrieMap.scala:984)
+	at scala.collection.IterableLike.foreach(IterableLike.scala:74)
+	at scala.collection.IterableLike.foreach$(IterableLike.scala:73)
+	at scala.collection.concurrent.TrieMap.foreach(TrieMap.scala:625)
+	at scala.collection.TraversableLike$WithFilter.foreach(TraversableLike.scala:876)
+	at sbt.TrapExit$App.processThreads(TrapExit.scala:332)
+	at sbt.TrapExit.waitForExit(TrapExit.scala:199)
+	at sbt.TrapExit.finish(TrapExit.scala:189)
+	at sbt.TrapExit.runManaged0(TrapExit.scala:168)
+	at sbt.TrapExit.runManaged(TrapExit.scala:157)
+	at sbt.TrapExit$.apply(TrapExit.scala:42)
+	at sbt.Run$.executeTrapExit(Run.scala:155)
+	at sbt.Run.runWithLoader(Run.scala:92)
+	at sbt.Run.run(Run.scala:99)
+	at sbt.Defaults$.$anonfun$runMainTask$5(Defaults.scala:1521)
+	at sbt.Defaults$.$anonfun$runMainTask$5$adapted(Defaults.scala:1519)
+	at sbt.Defaults$$$Lambda$4081/453562991.apply(Unknown Source)
+	at scala.Function1.$anonfun$compose$1(Function1.scala:49)
+	at scala.Function1$$Lambda$1187/1389055824.apply(Unknown Source)
+	at sbt.internal.util.$tilde$greater.$anonfun$$u2219$1(TypeFunctions.scala:62)
+	at sbt.internal.util.$tilde$greater$$Lambda$2309/1502971166.apply(Unknown Source)
+	at sbt.std.Transform$$anon$4.work(Transform.scala:67)
+	at sbt.Execute.$anonfun$submit$2(Execute.scala:281)
+	at sbt.Execute$$Lambda$2327/1009089117.apply(Unknown Source)
+	at sbt.internal.util.ErrorHandling$.wideConvert(ErrorHandling.scala:19)
+	at sbt.Execute.work(Execute.scala:290)
+	at sbt.Execute.$anonfun$submit$1(Execute.scala:281)
+	at sbt.Execute$$Lambda$2318/1209462308.apply(Unknown Source)
+	at sbt.ConcurrentRestrictions$$anon$4.$anonfun$submitValid$1(ConcurrentRestrictions.scala:178)
+	at sbt.ConcurrentRestrictions$$anon$4$$Lambda$2325/1406324738.apply(Unknown Source)
+	at sbt.CompletionService$$anon$2.call(CompletionService.scala:37)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+   Locked ownable synchronizers:
+	- <0x00000000fc753a28> (a java.util.concurrent.ThreadPoolExecutor$Worker)
+
+"ForkJoinPool.commonPool-worker-9" #225 daemon prio=5 os_prio=0 tid=0x00007f9103aff800 nid=0x36767 waiting on condition [0x00007f90bd7f4000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000c178e048> (a java.util.concurrent.ForkJoinPool)
+	at java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1824)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1693)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+
+   Locked ownable synchronizers:
+	- None
+
+"scala-execution-context-global-40" #40 daemon prio=5 os_prio=0 tid=0x00007f9028001000 nid=0x366aa waiting on condition [0x00007f90bfbfd000]
+   java.lang.Thread.State: WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000c1b62778> (a java.util.concurrent.ForkJoinPool)
+	at java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1824)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1693)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+
+   Locked ownable synchronizers:
+	- None
+
+"scala-execution-context-global-38" #38 daemon prio=5 os_prio=0 tid=0x00007f9040003000 nid=0x366a8 waiting on condition [0x00007f90c47ef000]
+   java.lang.Thread.State: WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000c1b62778> (a java.util.concurrent.ForkJoinPool)
+	at java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1824)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1693)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+
+   Locked ownable synchronizers:
+	- None
+
+"scala-execution-context-global-39" #39 daemon prio=5 os_prio=0 tid=0x00007f9024001000 nid=0x366a7 waiting on condition [0x00007f90c4bf0000]
+   java.lang.Thread.State: WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000c1b62778> (a java.util.concurrent.ForkJoinPool)
+	at java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1824)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1693)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+
+   Locked ownable synchronizers:
+	- None
+
+"scala-execution-context-global-37" #37 daemon prio=5 os_prio=0 tid=0x00007f9038001000 nid=0x366a6 waiting on condition [0x00007f90c4ff1000]
+   java.lang.Thread.State: WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000c1b62778> (a java.util.concurrent.ForkJoinPool)
+	at java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1824)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1693)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+
+   Locked ownable synchronizers:
+	- None
+
+"scala-execution-context-global-35" #35 daemon prio=5 os_prio=0 tid=0x00007f9034001000 nid=0x366a5 waiting on condition [0x00007f90c53f2000]
+   java.lang.Thread.State: WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000c1b62778> (a java.util.concurrent.ForkJoinPool)
+	at java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1824)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1693)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+
+   Locked ownable synchronizers:
+	- None
+
+"scala-execution-context-global-36" #36 daemon prio=5 os_prio=0 tid=0x00007f9048004800 nid=0x366a4 waiting on condition [0x00007f90c57f3000]
+   java.lang.Thread.State: WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000c1b62778> (a java.util.concurrent.ForkJoinPool)
+	at java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1824)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1693)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+
+   Locked ownable synchronizers:
+	- None
+
+"scala-execution-context-global-34" #34 daemon prio=5 os_prio=0 tid=0x00007f9040001000 nid=0x366a2 waiting on condition [0x00007f90c5ff5000]
+   java.lang.Thread.State: WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000c1b62778> (a java.util.concurrent.ForkJoinPool)
+	at java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1824)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1693)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+
+   Locked ownable synchronizers:
+	- None
+
+"scala-execution-context-global-33" #33 daemon prio=5 os_prio=0 tid=0x00007f903c003000 nid=0x366a1 waiting on condition [0x00007f90c63f6000]
+   java.lang.Thread.State: WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000c1b62778> (a java.util.concurrent.ForkJoinPool)
+	at java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1824)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1693)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+
+   Locked ownable synchronizers:
+	- None
+
+"scala-execution-context-global-32" #32 daemon prio=5 os_prio=0 tid=0x00007f9048003000 nid=0x366a0 waiting on condition [0x00007f90c67f7000]
+   java.lang.Thread.State: WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000c1b62778> (a java.util.concurrent.ForkJoinPool)
+	at java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1824)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1693)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+
+   Locked ownable synchronizers:
+	- None
+
+"scala-execution-context-global-30" #30 daemon prio=5 os_prio=0 tid=0x00007f903c001000 nid=0x3669f waiting on condition [0x00007f90c6bf8000]
+   java.lang.Thread.State: WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000c1b62778> (a java.util.concurrent.ForkJoinPool)
+	at java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1824)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1693)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+
+   Locked ownable synchronizers:
+	- None
+
+"scala-execution-context-global-29" #29 daemon prio=5 os_prio=0 tid=0x00007f9048001000 nid=0x3669e waiting on condition [0x00007f90c6ff9000]
+   java.lang.Thread.State: WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000c1b62778> (a java.util.concurrent.ForkJoinPool)
+	at java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1824)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1693)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+
+   Locked ownable synchronizers:
+	- None
+
+"scala-execution-context-global-28" #28 daemon prio=5 os_prio=0 tid=0x00007f9044008000 nid=0x3669d waiting on condition [0x00007f90c73fa000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000c1b62778> (a java.util.concurrent.ForkJoinPool)
+	at java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1824)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1693)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+
+   Locked ownable synchronizers:
+	- None
+
+"scala-execution-context-global-27" #27 daemon prio=5 os_prio=0 tid=0x00007f9044003800 nid=0x3669c waiting on condition [0x00007f90c77fb000]
+   java.lang.Thread.State: WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000c1b62778> (a java.util.concurrent.ForkJoinPool)
+	at java.util.concurrent.ForkJoinPool.awaitWork(ForkJoinPool.java:1824)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1693)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+
+   Locked ownable synchronizers:
+	- None
+
+"classloader-cache-cleanup-0" #22 daemon prio=5 os_prio=0 tid=0x00007f9102d67000 nid=0x36688 in Object.wait() [0x00007f90cfba6000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:144)
+	- locked <0x00000000c09563b8> (a java.lang.ref.ReferenceQueue$Lock)
+	at sbt.internal.classpath.ClassLoaderCache$CleanupThread.run(ClassLoaderCache.scala:102)
+
+   Locked ownable synchronizers:
+	- None
+
+"process reaper" #21 daemon prio=10 os_prio=0 tid=0x00007f9102d21000 nid=0x36680 waiting on condition [0x00007f90cd893000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000c0a1dcb8> (a java.util.concurrent.SynchronousQueue$TransferStack)
+	at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+	at java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill(SynchronousQueue.java:460)
+	at java.util.concurrent.SynchronousQueue$TransferStack.transfer(SynchronousQueue.java:362)
+	at java.util.concurrent.SynchronousQueue.poll(SynchronousQueue.java:941)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1073)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+   Locked ownable synchronizers:
+	- None
+
+"Service Thread" #17 daemon prio=9 os_prio=0 tid=0x00007f910033b800 nid=0x3667b runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+   Locked ownable synchronizers:
+	- None
+
+"C1 CompilerThread11" #16 daemon prio=9 os_prio=0 tid=0x00007f9100338800 nid=0x3667a waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+   Locked ownable synchronizers:
+	- None
+
+"C1 CompilerThread10" #15 daemon prio=9 os_prio=0 tid=0x00007f9100336800 nid=0x36679 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+   Locked ownable synchronizers:
+	- None
+
+"C1 CompilerThread9" #14 daemon prio=9 os_prio=0 tid=0x00007f9100334800 nid=0x36678 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+   Locked ownable synchronizers:
+	- None
+
+"C1 CompilerThread8" #13 daemon prio=9 os_prio=0 tid=0x00007f9100332000 nid=0x36677 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+   Locked ownable synchronizers:
+	- None
+
+"C2 CompilerThread7" #12 daemon prio=9 os_prio=0 tid=0x00007f9100330000 nid=0x36676 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+   Locked ownable synchronizers:
+	- None
+
+"C2 CompilerThread6" #11 daemon prio=9 os_prio=0 tid=0x00007f910032d800 nid=0x36675 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+   Locked ownable synchronizers:
+	- None
+
+"C2 CompilerThread5" #10 daemon prio=9 os_prio=0 tid=0x00007f910032c000 nid=0x36674 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+   Locked ownable synchronizers:
+	- None
+
+"C2 CompilerThread4" #9 daemon prio=9 os_prio=0 tid=0x00007f910032a000 nid=0x36673 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+   Locked ownable synchronizers:
+	- None
+
+"C2 CompilerThread3" #8 daemon prio=9 os_prio=0 tid=0x00007f910031f800 nid=0x36672 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+   Locked ownable synchronizers:
+	- None
+
+"C2 CompilerThread2" #7 daemon prio=9 os_prio=0 tid=0x00007f910031d800 nid=0x36671 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+   Locked ownable synchronizers:
+	- None
+
+"C2 CompilerThread1" #6 daemon prio=9 os_prio=0 tid=0x00007f910031b800 nid=0x36670 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+   Locked ownable synchronizers:
+	- None
+
+"C2 CompilerThread0" #5 daemon prio=9 os_prio=0 tid=0x00007f910030e800 nid=0x3666f waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+   Locked ownable synchronizers:
+	- None
+
+"Signal Dispatcher" #4 daemon prio=9 os_prio=0 tid=0x00007f910030c000 nid=0x3666e runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+   Locked ownable synchronizers:
+	- None
+
+"Finalizer" #3 daemon prio=8 os_prio=0 tid=0x00007f91002de800 nid=0x3666d in Object.wait() [0x00007f90d56d8000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:144)
+	- locked <0x00000000c000cc00> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:165)
+	at java.lang.ref.Finalizer$FinalizerThread.run(Finalizer.java:216)
+
+   Locked ownable synchronizers:
+	- None
+
+"Reference Handler" #2 daemon prio=10 os_prio=0 tid=0x00007f91002da000 nid=0x3666c in Object.wait() [0x00007f90d5ad9000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Object.wait(Object.java:502)
+	at java.lang.ref.Reference.tryHandlePending(Reference.java:191)
+	- locked <0x00000000c0013088> (a java.lang.ref.Reference$Lock)
+	at java.lang.ref.Reference$ReferenceHandler.run(Reference.java:153)
+
+   Locked ownable synchronizers:
+	- None
+
+"main" #1 prio=5 os_prio=0 tid=0x00007f910004c800 nid=0x3665d waiting on condition [0x00007f9105387000]
+   java.lang.Thread.State: WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000fc7f6cb0> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.park(LockSupport.java:175)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2039)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ExecutorCompletionService.take(ExecutorCompletionService.java:193)
+	at sbt.ConcurrentRestrictions$$anon$4.take(ConcurrentRestrictions.scala:213)
+	at sbt.Execute.next$1(Execute.scala:116)
+	at sbt.Execute.processAll(Execute.scala:126)
+	at sbt.Execute.runKeep(Execute.scala:94)
+	at sbt.EvaluateTask$.liftedTree1$1(EvaluateTask.scala:477)
+	at sbt.EvaluateTask$.run$1(EvaluateTask.scala:476)
+	at sbt.EvaluateTask$.runTask(EvaluateTask.scala:497)
+	at sbt.internal.Aggregation$.$anonfun$timedRun$4(Aggregation.scala:101)
+	at sbt.internal.Aggregation$$$Lambda$3184/2043383802.apply(Unknown Source)
+	at sbt.EvaluateTask$.withStreams(EvaluateTask.scala:400)
+	at sbt.internal.Aggregation$.timedRun(Aggregation.scala:99)
+	at sbt.internal.Aggregation$.runTasks(Aggregation.scala:113)
+	at sbt.internal.Aggregation$.$anonfun$applyDynamicTasks$4(Aggregation.scala:181)
+	at sbt.internal.Aggregation$$$Lambda$4073/2141744605.apply(Unknown Source)
+	at sbt.Command$.$anonfun$applyEffect$2(Command.scala:144)
+	at sbt.Command$$$Lambda$685/1547116051.apply(Unknown Source)
+	at sbt.internal.Act$.$anonfun$actParser0$4(Act.scala:436)
+	at sbt.internal.Act$$$Lambda$3174/1944186064.apply(Unknown Source)
+	at sbt.Command$.process(Command.scala:187)
+	at sbt.MainLoop$.process$1(MainLoop.scala:193)
+	at sbt.MainLoop$.processCommand(MainLoop.scala:227)
+	at sbt.MainLoop$.$anonfun$next$2(MainLoop.scala:142)
+	at sbt.MainLoop$$$Lambda$542/99808631.apply(Unknown Source)
+	at sbt.State$StateOpsImpl$.runCmd$1(State.scala:273)
+	at sbt.State$StateOpsImpl$.process$extension(State.scala:277)
+	at sbt.MainLoop$.$anonfun$next$1(MainLoop.scala:142)
+	at sbt.MainLoop$$$Lambda$541/1629353699.apply(Unknown Source)
+	at sbt.internal.util.ErrorHandling$.wideConvert(ErrorHandling.scala:19)
+	at sbt.MainLoop$.next(MainLoop.scala:142)
+	at sbt.MainLoop$.run(MainLoop.scala:133)
+	at sbt.MainLoop$.$anonfun$runWithNewLog$1(MainLoop.scala:111)
+	at sbt.MainLoop$$$Lambda$534/1572745406.apply(Unknown Source)
+	at sbt.io.Using.apply(Using.scala:27)
+	at sbt.MainLoop$.runWithNewLog(MainLoop.scala:105)
+	at sbt.MainLoop$.runAndClearLast(MainLoop.scala:60)
+	at sbt.MainLoop$.runLoggedLoop(MainLoop.scala:45)
+	at sbt.MainLoop$.runLogged(MainLoop.scala:36)
+	at sbt.StandardMain$.runManaged(Main.scala:132)
+	at sbt.xMain$.run(Main.scala:67)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sbt.internal.XMainConfiguration.run(XMainConfiguration.scala:45)
+	at sbt.xMain.run(Main.scala:39)
+	at xsbt.boot.Launch$$anonfun$run$1.apply(Launch.scala:111)
+	at xsbt.boot.Launch$.withContextLoader(Launch.scala:130)
+	at xsbt.boot.Launch$.run(Launch.scala:111)
+	at xsbt.boot.Launch$$anonfun$apply$1.apply(Launch.scala:37)
+	at xsbt.boot.Launch$.launch(Launch.scala:119)
+	at xsbt.boot.Launch$.apply(Launch.scala:20)
+	at xsbt.boot.Boot$.runImpl(Boot.scala:56)
+	at xsbt.boot.Boot$.main(Boot.scala:18)
+	at xsbt.boot.Boot.main(Boot.scala)
+
+   Locked ownable synchronizers:
+	- None
+
+"VM Thread" os_prio=0 tid=0x00007f91002d0000 nid=0x3666b runnable 
+
+"GC task thread#0 (ParallelGC)" os_prio=0 tid=0x00007f910005f000 nid=0x3665e runnable 
+
+"GC task thread#1 (ParallelGC)" os_prio=0 tid=0x00007f9100061000 nid=0x3665f runnable 
+
+"GC task thread#2 (ParallelGC)" os_prio=0 tid=0x00007f9100062800 nid=0x36660 runnable 
+
+"GC task thread#3 (ParallelGC)" os_prio=0 tid=0x00007f9100064800 nid=0x36661 runnable 
+
+"GC task thread#4 (ParallelGC)" os_prio=0 tid=0x00007f9100066000 nid=0x36662 runnable 
+
+"GC task thread#5 (ParallelGC)" os_prio=0 tid=0x00007f9100068000 nid=0x36663 runnable 
+
+"GC task thread#6 (ParallelGC)" os_prio=0 tid=0x00007f910006a000 nid=0x36664 runnable 
+
+"GC task thread#7 (ParallelGC)" os_prio=0 tid=0x00007f910006b800 nid=0x36665 runnable 
+
+"GC task thread#8 (ParallelGC)" os_prio=0 tid=0x00007f910006d800 nid=0x36666 runnable 
+
+"GC task thread#9 (ParallelGC)" os_prio=0 tid=0x00007f910006f800 nid=0x36667 runnable 
+
+"GC task thread#10 (ParallelGC)" os_prio=0 tid=0x00007f9100071000 nid=0x36668 runnable 
+
+"GC task thread#11 (ParallelGC)" os_prio=0 tid=0x00007f9100073000 nid=0x36669 runnable 
+
+"GC task thread#12 (ParallelGC)" os_prio=0 tid=0x00007f9100074800 nid=0x3666a runnable 
+
+"VM Periodic Task Thread" os_prio=0 tid=0x00007f910033e000 nid=0x3667c waiting on condition 
+
+JNI global references: 8909
+
+
+Found one Java-level deadlock:
+=============================
+"MissScarlett$":
+  waiting to lock monitor 0x00007f9044010d58 (object 0x00000000f8ad1f40, a org.pfcoperez.thebutlerdidit.SampleApp$Revolver$),
+  which is held by "ProfessorPlum$"
+"ProfessorPlum$":
+  waiting to lock monitor 0x00007f9103767e88 (object 0x00000000f8b32630, a org.pfcoperez.thebutlerdidit.SampleApp$LeadPipe$),
+  which is held by "ColonelMustard$"
+"ColonelMustard$":
+  waiting to lock monitor 0x00007f904400eba8 (object 0x00000000f8b8b810, a org.pfcoperez.thebutlerdidit.SampleApp$Dagger$),
+  which is held by "RevGreen$"
+"RevGreen$":
+  waiting to lock monitor 0x00007f8ffc007368 (object 0x00000000f8bb0268, a org.pfcoperez.thebutlerdidit.SampleApp$Candlestick$),
+  which is held by "MissScarlett$"
+
+Java stack information for the threads listed above:
+===================================================
+"MissScarlett$":
+	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:29)
+	- waiting to lock <0x00000000f8ad1f40> (a org.pfcoperez.thebutlerdidit.SampleApp$Revolver$)
+	at org.pfcoperez.thebutlerdidit.SampleApp$MissScarlett$$anonfun$$lessinit$greater$1.$anonfun$apply$1(SampleApp.scala:51)
+	at org.pfcoperez.thebutlerdidit.SampleApp$MissScarlett$$anonfun$$lessinit$greater$1$$Lambda$5734/743430739.apply$mcV$sp(Unknown Source)
+	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:30)
+	- locked <0x00000000f8bb0268> (a org.pfcoperez.thebutlerdidit.SampleApp$Candlestick$)
+	at org.pfcoperez.thebutlerdidit.SampleApp$MissScarlett$$anonfun$$lessinit$greater$1.apply$mcV$sp(SampleApp.scala:50)
+	at org.pfcoperez.thebutlerdidit.SampleApp$Suspect.run(SampleApp.scala:36)
+"ProfessorPlum$":
+	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:29)
+	- waiting to lock <0x00000000f8b32630> (a org.pfcoperez.thebutlerdidit.SampleApp$LeadPipe$)
+	at org.pfcoperez.thebutlerdidit.SampleApp$ProfessorPlum$$anonfun$$lessinit$greater$4.$anonfun$apply$7(SampleApp.scala:86)
+	at org.pfcoperez.thebutlerdidit.SampleApp$ProfessorPlum$$anonfun$$lessinit$greater$4$$Lambda$5731/839269867.apply$mcV$sp(Unknown Source)
+	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:30)
+	- locked <0x00000000f8ad1f40> (a org.pfcoperez.thebutlerdidit.SampleApp$Revolver$)
+	at org.pfcoperez.thebutlerdidit.SampleApp$ProfessorPlum$$anonfun$$lessinit$greater$4.apply$mcV$sp(SampleApp.scala:82)
+	at org.pfcoperez.thebutlerdidit.SampleApp$Suspect.run(SampleApp.scala:36)
+"ColonelMustard$":
+	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:29)
+	- waiting to lock <0x00000000f8b8b810> (a org.pfcoperez.thebutlerdidit.SampleApp$Dagger$)
+	at org.pfcoperez.thebutlerdidit.SampleApp$ColonelMustard$$anonfun$$lessinit$greater$3.$anonfun$apply$5(SampleApp.scala:74)
+	at org.pfcoperez.thebutlerdidit.SampleApp$ColonelMustard$$anonfun$$lessinit$greater$3$$Lambda$5741/1192721098.apply$mcV$sp(Unknown Source)
+	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:30)
+	- locked <0x00000000f8b32630> (a org.pfcoperez.thebutlerdidit.SampleApp$LeadPipe$)
+	at org.pfcoperez.thebutlerdidit.SampleApp$ColonelMustard$$anonfun$$lessinit$greater$3.apply$mcV$sp(SampleApp.scala:73)
+	at org.pfcoperez.thebutlerdidit.SampleApp$Suspect.run(SampleApp.scala:36)
+"RevGreen$":
+	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:29)
+	- waiting to lock <0x00000000f8bb0268> (a org.pfcoperez.thebutlerdidit.SampleApp$Candlestick$)
+	at org.pfcoperez.thebutlerdidit.SampleApp$RevGreen$$anonfun$$lessinit$greater$2.$anonfun$apply$3(SampleApp.scala:62)
+	at org.pfcoperez.thebutlerdidit.SampleApp$RevGreen$$anonfun$$lessinit$greater$2$$Lambda$5740/518732161.apply$mcV$sp(Unknown Source)
+	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:30)
+	- locked <0x00000000f8b8b810> (a org.pfcoperez.thebutlerdidit.SampleApp$Dagger$)
+	at org.pfcoperez.thebutlerdidit.SampleApp$RevGreen$$anonfun$$lessinit$greater$2.apply$mcV$sp(SampleApp.scala:61)
+	at org.pfcoperez.thebutlerdidit.SampleApp$Suspect.run(SampleApp.scala:36)
+
+Found one Java-level deadlock:
+=============================
+"MrsWhite$":
+  waiting to lock monitor 0x00007f9004004688 (object 0x00000000f8aa4930, a org.pfcoperez.thebutlerdidit.SampleApp$Rope$),
+  which is held by "MrsPeakcock$"
+"MrsPeakcock$":
+  waiting to lock monitor 0x00007f9044011178 (object 0x00000000f8aff330, a org.pfcoperez.thebutlerdidit.SampleApp$Wrench$),
+  which is held by "MrsWhite$"
+
+Java stack information for the threads listed above:
+===================================================
+"MrsWhite$":
+	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:29)
+	- waiting to lock <0x00000000f8aa4930> (a org.pfcoperez.thebutlerdidit.SampleApp$Rope$)
+	at org.pfcoperez.thebutlerdidit.SampleApp$MrsWhite$$anonfun$$lessinit$greater$6.$anonfun$apply$11(SampleApp.scala:106)
+	at org.pfcoperez.thebutlerdidit.SampleApp$MrsWhite$$anonfun$$lessinit$greater$6$$Lambda$5732/1029770374.apply$mcV$sp(Unknown Source)
+	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:30)
+	- locked <0x00000000f8aff330> (a org.pfcoperez.thebutlerdidit.SampleApp$Wrench$)
+	at org.pfcoperez.thebutlerdidit.SampleApp$MrsWhite$$anonfun$$lessinit$greater$6.apply$mcV$sp(SampleApp.scala:105)
+	at org.pfcoperez.thebutlerdidit.SampleApp$Suspect.run(SampleApp.scala:36)
+"MrsPeakcock$":
+	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:29)
+	- waiting to lock <0x00000000f8aff330> (a org.pfcoperez.thebutlerdidit.SampleApp$Wrench$)
+	at org.pfcoperez.thebutlerdidit.SampleApp$MrsPeakcock$$anonfun$$lessinit$greater$5.$anonfun$apply$9(SampleApp.scala:97)
+	at org.pfcoperez.thebutlerdidit.SampleApp$MrsPeakcock$$anonfun$$lessinit$greater$5$$Lambda$5729/189587566.apply$mcV$sp(Unknown Source)
+	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:30)
+	- locked <0x00000000f8aa4930> (a org.pfcoperez.thebutlerdidit.SampleApp$Rope$)
+	at org.pfcoperez.thebutlerdidit.SampleApp$MrsPeakcock$$anonfun$$lessinit$greater$5.apply$mcV$sp(SampleApp.scala:93)
+	at org.pfcoperez.thebutlerdidit.SampleApp$Suspect.run(SampleApp.scala:36)
+
+Found 2 deadlocks.
+
