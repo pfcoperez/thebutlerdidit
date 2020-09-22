@@ -36,14 +36,39 @@ object WebUI {
       State.synchronized(current)
   }
 
+  sealed trait ColumnClass {
+    def className: String
+  }
+  case object Md extends ColumnClass {
+    def className: String = "col-md"
+  }
+
+  case class MdN(n: Int) extends ColumnClass {
+    assert(n > 0)
+    assert(n <= 12)
+
+    def className: String = s"col-md-$n"
+  }
+
+  def wrappedInColumn(columnClass: ColumnClass)(element: => Element): Element = {
+    val column = document.createElement("div")
+    column.setAttribute("class", columnClass.className)
+    column.appendChild(element)
+    column
+  }
+
   def main(args: Array[String]): Unit = {
 
     val viz = new Viz()
 
     val topLevelDiv = document.createElement("div")
-    topLevelDiv.setAttribute("class", "container-fluid")
+    topLevelDiv.setAttribute("class", "container")
 
     document.body.appendChild(topLevelDiv)
+
+    val headerDiv = document.createElement("div")
+    headerDiv.setAttribute("class", "row")
+    topLevelDiv.appendChild(headerDiv)
 
     val textIODiv = document.createElement("div")
     textIODiv.setAttribute("class", "row")
@@ -57,56 +82,92 @@ object WebUI {
     actionsDiv.setAttribute("class", "row")
     topLevelDiv.appendChild(actionsDiv)
 
-    val emptyRowDiv = document.createElement("div")
-    emptyRowDiv.setAttribute("class", "row")
-    val emptyColDiv = document.createElement("div")
-    emptyColDiv.setAttribute("class", "col-md-12")
-    emptyRowDiv.appendChild(emptyColDiv)
-    topLevelDiv.appendChild(emptyRowDiv)
+    val resultsRow = document.createElement("div")
+    resultsRow.setAttribute("class", "row")
+    topLevelDiv.appendChild(resultsRow)
 
-    val resultsDiv = document.createElement("div")
-    resultsDiv.setAttribute("class", "row")
-    topLevelDiv.appendChild(resultsDiv)
+    val resultsDiv = wrappedInColumn(MdN(12)) {
+      document.createElement("div")
+    }
+    resultsRow.appendChild(resultsDiv)
+
+    val iconDiv = wrappedInColumn(MdN(4)) {
+      val imageNode = document.createElement("img").asInstanceOf[Image]
+      imageNode.src = "logo.png"
+      imageNode.style = "padding: 2em"
+      imageNode.width = 255
+      imageNode
+    }
+
+    val textDiv = wrappedInColumn(MdN(8)) {
+      val textNode = document.createElement("p").asInstanceOf[Paragraph]
+      textNode.setAttribute("class", "text-lg-center")
+      textNode.textContent = "Find your locks"
+      textNode.style = "padding: 2em"
+      textNode
+    }
 
     val inputTextNode = document.createElement("textarea").asInstanceOf[TextArea]
-    inputTextNode.cols = 80
-    inputTextNode.rows = 32
-    inputTextNode.setAttribute("class", "col-md-6")
-    inputTextNode.setAttribute("style", "resize:none")
+    val inputTextDiv = wrappedInColumn(MdN(7)) {
+      inputTextNode.cols = 80
+      inputTextNode.rows = 32
+      inputTextNode.setAttribute("style", "resize:none")
+      inputTextNode
+    }
 
     val outTextNode = document.createElement("textarea").asInstanceOf[TextArea]
-    outTextNode.cols = 80
-    outTextNode.rows = 32
-    outTextNode.setAttribute("style", "resize:none")
-    outTextNode.disabled = true
+    val outTextDiv = wrappedInColumn(MdN(5)) {
+      outTextNode.cols = 50
+      outTextNode.rows = 32
+      outTextNode.setAttribute("style", "resize:none")
+      outTextNode.disabled = true
+      outTextNode
+    }
 
     val analyzeButton = document.createElement("button").asInstanceOf[Button]
-    analyzeButton.textContent = "Analyze!"
-    analyzeButton.setAttribute("class", "btn btn-default")
+    val analyzeDiv = wrappedInColumn(MdN(1)) {
+      analyzeButton.textContent = "Analyze!"
+      analyzeButton.setAttribute("class", "btn btn-default")
+      analyzeButton
+    }
 
     val resetButton = document.createElement("button").asInstanceOf[Button]
-    resetButton.textContent = "Clear"
-    resetButton.setAttribute("class", "btn btn-danger")
+    val resetDiv = wrappedInColumn(MdN(1)) {
+      resetButton.textContent = "Clear"
+      resetButton.setAttribute("class", "btn btn-danger")
+      resetButton
+    }
 
     val enableIsolatedNodes = document.createElement("input").asInstanceOf[Input]
-    enableIsolatedNodes.`type` = "checkbox"
-    enableIsolatedNodes.checked = false
-    enableIsolatedNodes.id = "show-isolated"
+    val enableIsolatedDiv = wrappedInColumn(MdN(4)) {
+      val formDiv = document.createElement("div")
+      formDiv.setAttribute("class", "form-check")
 
-    val enableIsolatedNodesLabel = document.createElement("label").asInstanceOf[Label]
-    enableIsolatedNodesLabel.textContent = "Include threads with no lock-relations"
-    enableIsolatedNodesLabel.htmlFor = enableIsolatedNodes.id
-    optionsDiv.appendChild(enableIsolatedNodesLabel)
+      enableIsolatedNodes.`type` = "checkbox"
+      enableIsolatedNodes.checked = false
+      enableIsolatedNodes.disabled = true
+      enableIsolatedNodes.id = "show-isolated"
+      enableIsolatedNodes.setAttribute("class", "form-check-input")
+      formDiv.appendChild(enableIsolatedNodes)
+
+      val enableIsolatedNodesLabel = document.createElement("label").asInstanceOf[Label]
+      enableIsolatedNodesLabel.textContent = "Include threads with no lock-relations"
+      enableIsolatedNodesLabel.htmlFor = enableIsolatedNodes.id
+      enableIsolatedNodesLabel.setAttribute("class", "form-check-label")
+      formDiv.appendChild(enableIsolatedNodesLabel)
+
+      formDiv
+    }
 
     def computeAndRenderResult: Unit = {
       val reportResult = processReport(inputTextNode.value, enableIsolatedNodes.checked)
       val dotReport    = reportResult.merge
 
       val newState = if (reportResult.isLeft) {
-        outTextNode.setAttribute("class", "col-md-6 bg-danger")
+        outTextNode.setAttribute("class", "col-sm bg-danger")
         State.update(_.copy(previousSuccessfulTransformation = false))
       } else {
-        outTextNode.setAttribute("class", "col-md-6 bg-success")
+        outTextNode.setAttribute("class", "col-sm bg-success")
 
         val vizOptions = Dynamic.literal(engine = "dot")
 
@@ -136,10 +197,12 @@ object WebUI {
       (e: dom.MouseEvent) => window.location.reload(false)
     )
 
-    textIODiv.appendChild(inputTextNode)
-    textIODiv.appendChild(outTextNode)
-    optionsDiv.appendChild(enableIsolatedNodes)
-    actionsDiv.appendChild(analyzeButton)
-    actionsDiv.appendChild(resetButton)
+    textIODiv.appendChild(inputTextDiv)
+    textIODiv.appendChild(outTextDiv)
+    optionsDiv.appendChild(enableIsolatedDiv)
+    actionsDiv.appendChild(analyzeDiv)
+    actionsDiv.appendChild(resetDiv)
+    headerDiv.appendChild(iconDiv)
+    headerDiv.appendChild(textDiv)
   }
 }
