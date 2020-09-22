@@ -5,17 +5,30 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
-   version="1.1"
-   id="svg8"
+   sodipodi:docname="logo.svg"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
-   sodipodi:docname="logo.svg">
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 210 297"
+   height="297mm"
+   width="210mm">
   <defs
      id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient943">
+      <stop
+         style="stop-color:#e6e6e6;stop-opacity:1;"
+         offset="0"
+         id="stop947" />
+      <stop
+         style="stop-color:#e6e6e6;stop-opacity:0;"
+         offset="1"
+         id="stop949" />
+    </linearGradient>
     <marker
        style="overflow:visible;"
        id="marker1805"
@@ -158,6 +171,15 @@
        miter_limit="4"
        scale_width="1"
        end_linecap_type="zerowidth" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient943"
+       id="linearGradient945"
+       x1="92.156242"
+       y1="64.096313"
+       x2="94.276016"
+       y2="64.096313"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -166,17 +188,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="7.9195959"
-     inkscape:cx="115.89649"
-     inkscape:cy="74.958077"
+     inkscape:zoom="2.8"
+     inkscape:cx="-54.344006"
+     inkscape:cy="384.39828"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="false"
-     inkscape:window-width="4092"
-     inkscape:window-height="2241"
+     inkscape:window-width="2214"
+     inkscape:window-height="727"
      inkscape:window-x="0"
-     inkscape:window-y="28"
+     inkscape:window-y="469"
      inkscape:window-maximized="0"
      inkscape:snap-intersection-paths="true" />
   <metadata
@@ -187,7 +209,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -201,22 +223,34 @@
        width="34.684879"
        height="52.436619"
        x="47.837704"
-       y="36.837234" />
+       y="36.837234"
+       inkscape:export-filename="/home/pablo/programming/thebutlerdidit/webapp/logo.png"
+       inkscape:export-xdpi="120.12981"
+       inkscape:export-ydpi="120.12981" />
     <rect
        style="fill:#f2f2f2;stroke-width:0.264105"
        id="rect14"
        width="34.607239"
        height="10.688466"
        x="47.892513"
-       y="57.101223" />
+       y="57.101223"
+       inkscape:export-filename="/home/pablo/programming/thebutlerdidit/webapp/logo.png"
+       inkscape:export-xdpi="120.12981"
+       inkscape:export-ydpi="120.12981" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264105px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 47.892512,57.101223 82.499756,67.789688 47.892512,57.101223 v 0"
-       id="path16" />
+       id="path16"
+       inkscape:export-filename="/home/pablo/programming/thebutlerdidit/webapp/logo.png"
+       inkscape:export-xdpi="120.12981"
+       inkscape:export-ydpi="120.12981" />
     <path
        style="fill:#ececec;stroke:#000000;stroke-width:0.264249px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 47.892489,67.801278 82.499756,57.101223 Z"
-       id="path18" />
+       id="path18"
+       inkscape:export-filename="/home/pablo/programming/thebutlerdidit/webapp/logo.png"
+       inkscape:export-xdpi="120.12981"
+       inkscape:export-ydpi="120.12981" />
     <path
        sodipodi:type="star"
        style="fill:#ececec;stroke-width:0.264583"
@@ -234,13 +268,19 @@
        d="M 65.414748,67.154404 47.837705,36.899934 82.827366,36.805003 Z"
        inkscape:transform-center-x="0.027166121"
        inkscape:transform-center-y="3.3198688"
-       transform="matrix(0.99128938,0,0,0.66046143,0.41669507,12.52895)" />
+       transform="matrix(0.99128938,0,0,0.66046143,0.41669507,12.52895)"
+       inkscape:export-filename="/home/pablo/programming/thebutlerdidit/webapp/logo.png"
+       inkscape:export-xdpi="120.12981"
+       inkscape:export-ydpi="120.12981" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:3.16813px;line-height:1.25;font-family:sans-serif;fill:#ececec;fill-opacity:1;stroke:none;stroke-width:0.0792034"
        x="60.229557"
        y="72.129387"
-       id="text48"><tspan
+       id="text48"
+       inkscape:export-filename="/home/pablo/programming/thebutlerdidit/webapp/logo.png"
+       inkscape:export-xdpi="120.12981"
+       inkscape:export-ydpi="120.12981"><tspan
          sodipodi:role="line"
          id="tspan46"
          x="60.229557"
@@ -251,7 +291,10 @@
        style="font-style:normal;font-weight:normal;font-size:3.16812px;line-height:1.25;font-family:sans-serif;fill:#ececec;fill-opacity:1;stroke:none;stroke-width:0.0792033"
        x="66.799362"
        y="72.181374"
-       id="text48-3"><tspan
+       id="text48-3"
+       inkscape:export-filename="/home/pablo/programming/thebutlerdidit/webapp/logo.png"
+       inkscape:export-xdpi="120.12981"
+       inkscape:export-ydpi="120.12981"><tspan
          sodipodi:role="line"
          id="tspan46-6"
          x="66.799362"
@@ -262,7 +305,10 @@
        style="font-style:normal;font-weight:normal;font-size:3.16812px;line-height:1.25;font-family:sans-serif;fill:#ececec;fill-opacity:1;stroke:none;stroke-width:0.0792033"
        x="60.16502"
        y="75.604759"
-       id="text48-7"><tspan
+       id="text48-7"
+       inkscape:export-filename="/home/pablo/programming/thebutlerdidit/webapp/logo.png"
+       inkscape:export-xdpi="120.12981"
+       inkscape:export-ydpi="120.12981"><tspan
          sodipodi:role="line"
          id="tspan46-5"
          x="60.16502"
@@ -273,7 +319,10 @@
        style="font-style:normal;font-weight:normal;font-size:3.16812px;line-height:1.25;font-family:sans-serif;fill:#ececec;fill-opacity:1;stroke:none;stroke-width:0.0792033"
        x="66.734833"
        y="75.656746"
-       id="text48-3-3"><tspan
+       id="text48-3-3"
+       inkscape:export-filename="/home/pablo/programming/thebutlerdidit/webapp/logo.png"
+       inkscape:export-xdpi="120.12981"
+       inkscape:export-ydpi="120.12981"><tspan
          sodipodi:role="line"
          id="tspan46-6-5"
          x="66.734833"
@@ -284,7 +333,10 @@
        style="font-style:normal;font-weight:normal;font-size:3.16812px;line-height:1.25;font-family:sans-serif;fill:#ececec;fill-opacity:1;stroke:none;stroke-width:0.0792033"
        x="60.198097"
        y="79.270508"
-       id="text48-6"><tspan
+       id="text48-6"
+       inkscape:export-filename="/home/pablo/programming/thebutlerdidit/webapp/logo.png"
+       inkscape:export-xdpi="120.12981"
+       inkscape:export-ydpi="120.12981"><tspan
          sodipodi:role="line"
          id="tspan46-2"
          x="60.198097"
@@ -295,7 +347,10 @@
        style="font-style:normal;font-weight:normal;font-size:3.16812px;line-height:1.25;font-family:sans-serif;fill:#ececec;fill-opacity:1;stroke:none;stroke-width:0.0792033"
        x="66.767899"
        y="79.322495"
-       id="text48-3-9"><tspan
+       id="text48-3-9"
+       inkscape:export-filename="/home/pablo/programming/thebutlerdidit/webapp/logo.png"
+       inkscape:export-xdpi="120.12981"
+       inkscape:export-ydpi="120.12981"><tspan
          sodipodi:role="line"
          id="tspan46-6-1"
          x="66.767899"
@@ -307,68 +362,148 @@
        cx="65.251541"
        cy="42.421112"
        rx="0.98383963"
-       ry="0.8916375" />
+       ry="0.8916375"
+       inkscape:export-filename="/home/pablo/programming/thebutlerdidit/webapp/logo.png"
+       inkscape:export-xdpi="120.12981"
+       inkscape:export-ydpi="120.12981" />
     <path
        style="fill:#aa0000;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.9;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Send);"
        d="m 66.283337,42.053223 c 0.529558,0.744573 0.51904,0.761278 0.51904,0.761278 v 0"
-       id="path159" />
+       id="path159"
+       inkscape:export-filename="/home/pablo/programming/thebutlerdidit/webapp/logo.png"
+       inkscape:export-xdpi="120.12981"
+       inkscape:export-ydpi="120.12981" />
     <ellipse
        style="fill:#aa0000;stroke-width:0.646231;"
        id="path128-0"
        cx="62.21389"
        cy="46.533012"
        rx="0.98383963"
-       ry="0.8916375" />
+       ry="0.8916375"
+       inkscape:export-filename="/home/pablo/programming/thebutlerdidit/webapp/logo.png"
+       inkscape:export-xdpi="120.12981"
+       inkscape:export-ydpi="120.12981" />
     <ellipse
        style="fill:#aa0000;stroke-width:0.646231;"
        id="path128-6"
        cx="68.187111"
        cy="46.467964"
        rx="0.98383963"
-       ry="0.8916375" />
+       ry="0.8916375"
+       inkscape:export-filename="/home/pablo/programming/thebutlerdidit/webapp/logo.png"
+       inkscape:export-xdpi="120.12981"
+       inkscape:export-ydpi="120.12981" />
     <path
        style="fill:#aa0000;stroke:#aa0000;stroke-width:0.13;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker1403);stroke-miterlimit:4;stroke-dasharray:none;fill-opacity:1"
        d="m 67.039179,46.5984 c -3.534177,0.04185 -3.534177,0.04185 -3.534177,0.04185"
-       id="path1363" />
+       id="path1363"
+       inkscape:export-filename="/home/pablo/programming/thebutlerdidit/webapp/logo.png"
+       inkscape:export-xdpi="120.12981"
+       inkscape:export-ydpi="120.12981" />
     <path
        style="fill:#aa0000;stroke:#aa0000;stroke-width:0.129931px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker1369)"
        d="m 62.717526,45.583948 c 1.624956,-2.168474 1.624956,-2.168474 1.624956,-2.168474"
-       id="path1365" />
+       id="path1365"
+       inkscape:export-filename="/home/pablo/programming/thebutlerdidit/webapp/logo.png"
+       inkscape:export-xdpi="120.12981"
+       inkscape:export-ydpi="120.12981" />
     <path
        style="fill:#aa0000;stroke:#aa0000;stroke-width:0.129931px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker1637)"
        d="m 66.135611,43.224569 c 1.332697,2.129302 1.332697,2.129302 1.332697,2.129302"
-       id="path1873" />
+       id="path1873"
+       inkscape:export-filename="/home/pablo/programming/thebutlerdidit/webapp/logo.png"
+       inkscape:export-xdpi="120.12981"
+       inkscape:export-ydpi="120.12981" />
     <rect
-       style="fill:#333333;fill-opacity:1;stroke:#333333;stroke-width:0.13;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#333333;fill-opacity:1;stroke:#333333;stroke-width:0.131691;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect2523"
-       width="18.784893"
-       height="1.2863353"
-       x="3.448736"
-       y="106.48442"
-       transform="rotate(-46.27015)" />
-    <rect
-       style="fill:#c87137;fill-opacity:1;stroke:#333333;stroke-width:0.13;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect2525"
-       width="1.3126316"
-       height="4.7737155"
-       x="92.231873"
-       y="55.665459" />
-    <path
-       sodipodi:type="star"
-       style="fill:#e6e6e6;fill-opacity:1;stroke:#f2f2f2;stroke-width:0.13;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="path2527"
-       sodipodi:sides="3"
-       sodipodi:cx="15.92743"
-       sodipodi:cy="38.29834"
-       sodipodi:r1="4.7558554"
-       sodipodi:r2="2.1784539"
-       sodipodi:arg1="0.17300687"
-       sodipodi:arg2="1.2202044"
-       inkscape:flatsided="true"
-       inkscape:rounded="0"
-       inkscape:randomized="0"
-       d="m 20.612288,39.117037 -7.7363,2.82916 1.418026,-8.114412 z"
-       inkscape:transform-center-x="0.62369808"
-       inkscape:transform-center-y="0.5034924" />
+       width="19.071501"
+       height="1.3001769"
+       x="6.4981918"
+       y="106.23766"
+       transform="matrix(0.65427883,-0.7562534,0.68699283,0.7266642,0,0)"
+       inkscape:export-filename="/home/pablo/programming/thebutlerdidit/webapp/logo.png"
+       inkscape:export-xdpi="120.12981"
+       inkscape:export-ydpi="120.12981" />
+    <g
+       id="g1461"
+       transform="matrix(0.94655651,-0.85424592,0.85424592,0.94655651,-48.325163,80.38634)"
+       inkscape:export-filename="/home/pablo/programming/thebutlerdidit/webapp/logo.png"
+       inkscape:export-xdpi="120.12981"
+       inkscape:export-ydpi="120.12981">
+      <rect
+         style="fill:#c87137;fill-opacity:1;stroke:#333333;stroke-width:0.13;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect2525"
+         width="1.3126316"
+         height="4.7737155"
+         x="92.231873"
+         y="55.665459" />
+      <path
+         id="path2527"
+         style="mix-blend-mode:multiply;fill:url(#linearGradient945);fill-opacity:1;stroke:#f2f2f2;stroke-width:0.13;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:transform-center-x="0.62369808"
+         inkscape:transform-center-y="0.5034924"
+         d="m 94.191894,60.50519 -1.970651,7.298539 0.01063,-7.364554 z"
+         sodipodi:nodetypes="cccc" />
+    </g>
+    <g
+       inkscape:label="Rendered Gears"
+       transform="matrix(0.84310498,0,0,0.84310498,106.95032,57.944704)"
+       id="g2434"
+       style="fill:#ffffff"
+       inkscape:export-filename="/home/pablo/programming/thebutlerdidit/webapp/logo.png"
+       inkscape:export-xdpi="120.12981"
+       inkscape:export-ydpi="120.12981">
+      <path
+         style="fill:#ffffff;stroke:#000000;stroke-width:0.264583"
+         d="m 10.8813,-1.21137 1.2462,-0.13874 0.4362,0.02961 1.7374,0.63934 V 0.68116 L 12.5637,1.3205 12.1275,1.35011 10.8813,1.21137 10.4333,3.31918 11.6282,3.69933 12.0146,3.90379 13.3418,5.19451 12.7876,6.43905 10.9404,6.31646 10.5299,6.16611 9.44786,5.53247 8.18125,7.27582 9.11824,8.10912 9.38809,8.45308 10.0755,10.172 9.06311,11.0836 7.42545,10.2203 7.11158,9.91593 6.38079,8.89696 4.5146,9.97441 5.03165,11.1168 5.13827,11.5407 5.0671,13.3907 3.77146,13.8116 2.62653,12.3569 2.46359,11.9512 2.21043,10.7231 0.06733,10.9483 0.07504,12.2022 0,12.6329 -0.81745,14.294 -2.1723,14.1516 -2.62653,12.3569 -2.61039,11.92 l 0.26825,-1.2249 -2.04944,-0.6659 -0.50296,1.1486 -0.24373,0.3629 -1.42238,1.185 -1.1798,-0.6812 0.315,-1.8242 0.19244,-0.39259 0.74327,-1.0099 -1.6014,-1.44191 -0.92668,0.84476 -0.37027,0.23242 -1.78141,0.50396 -0.8007,-1.10213 1.0298,-1.53845 0.3354,-0.28033 1.08981,-0.62028 -0.87651,-1.9686 -1.1901,0.39482 -0.4328,0.06172 -1.8324,-0.26415 -0.2832,-1.33255 1.5665,-0.98659 0.4205,-0.11965 1.2478,-0.1234 v -2.1549 l -1.2478,-0.1234 -0.4205,-0.11965 -1.5665,-0.98659 0.2832,-1.33255 1.8324,-0.26415 0.4328,0.06172 1.1901,0.39482 0.87651,-1.9686 -1.08981,-0.62028 -0.3354,-0.28033 -1.0298,-1.53845 0.8007,-1.10213 1.78141,0.50396 0.37027,0.23242 0.92668,0.84476 1.6014,-1.44191 -0.74327,-1.0099 -0.19244,-0.39259 -0.315,-1.8242 1.1798,-0.6812 1.42238,1.185 0.24373,0.3629 0.50296,1.1486 2.04944,-0.6659 -0.26825,-1.2249 -0.01614,-0.4369 0.45423,-1.7947 1.35485,-0.1424 0.81745,1.6611 0.07504,0.4307 -0.00771,1.2539 2.1431,0.2252 0.25316,-1.2281 0.16294,-0.4057 1.14493,-1.4547 1.29564,0.4209 0.07117,1.85 -0.10662,0.4239 -0.51705,1.14239 1.86619,1.07745 0.73079,-1.01897 0.31387,-0.30437 1.63766,-0.8633 1.01239,0.9116 -0.68741,1.71892 -0.26985,0.34396 -0.93699,0.8333 1.26661,1.74335 1.08204,-0.63364 0.4105,-0.15035 1.8472,-0.12259 0.5542,1.24454 -1.3272,1.29072 -0.3864,0.20446 -1.1949,0.38015 z"
+         id="path2430" />
+      <circle
+         style="fill:#ffffff;stroke:#000000;stroke-width:0.264583"
+         id="path2432"
+         cx="0"
+         cy="0"
+         r="5.2916665" />
+    </g>
+    <g
+       inkscape:label="Rendered Gears"
+       transform="matrix(0.84310498,0,0,0.84310498,95.945394,77.004007)"
+       id="g2505"
+       style="fill:#ffffff"
+       inkscape:export-filename="/home/pablo/programming/thebutlerdidit/webapp/logo.png"
+       inkscape:export-xdpi="120.12981"
+       inkscape:export-ydpi="120.12981">
+      <path
+         style="fill:#ffffff;stroke:#000000;stroke-width:0.264583"
+         d="m 10.8813,-1.21137 1.2462,-0.13874 0.4362,0.02961 1.7374,0.63934 V 0.68116 L 12.5637,1.3205 12.1275,1.35011 10.8813,1.21137 10.4333,3.31918 11.6282,3.69933 12.0146,3.90379 13.3418,5.19451 12.7876,6.43905 10.9404,6.31646 10.5299,6.16611 9.44786,5.53247 8.18125,7.27582 9.11824,8.10912 9.38809,8.45308 10.0755,10.172 9.06311,11.0836 7.42545,10.2203 7.11158,9.91593 6.38079,8.89696 4.5146,9.97441 5.03165,11.1168 5.13827,11.5407 5.0671,13.3907 3.77146,13.8116 2.62653,12.3569 2.46359,11.9512 2.21043,10.7231 0.06733,10.9483 0.07504,12.2022 0,12.6329 -0.81745,14.294 -2.1723,14.1516 -2.62653,12.3569 -2.61039,11.92 l 0.26825,-1.2249 -2.04944,-0.6659 -0.50296,1.1486 -0.24373,0.3629 -1.42238,1.185 -1.1798,-0.6812 0.315,-1.8242 0.19244,-0.39259 0.74327,-1.0099 -1.6014,-1.44191 -0.92668,0.84476 -0.37027,0.23242 -1.78141,0.50396 -0.8007,-1.10213 1.0298,-1.53845 0.3354,-0.28033 1.08981,-0.62028 -0.87651,-1.9686 -1.1901,0.39482 -0.4328,0.06172 -1.8324,-0.26415 -0.2832,-1.33255 1.5665,-0.98659 0.4205,-0.11965 1.2478,-0.1234 v -2.1549 l -1.2478,-0.1234 -0.4205,-0.11965 -1.5665,-0.98659 0.2832,-1.33255 1.8324,-0.26415 0.4328,0.06172 1.1901,0.39482 0.87651,-1.9686 -1.08981,-0.62028 -0.3354,-0.28033 -1.0298,-1.53845 0.8007,-1.10213 1.78141,0.50396 0.37027,0.23242 0.92668,0.84476 1.6014,-1.44191 -0.74327,-1.0099 -0.19244,-0.39259 -0.315,-1.8242 1.1798,-0.6812 1.42238,1.185 0.24373,0.3629 0.50296,1.1486 2.04944,-0.6659 -0.26825,-1.2249 -0.01614,-0.4369 0.45423,-1.7947 1.35485,-0.1424 0.81745,1.6611 0.07504,0.4307 -0.00771,1.2539 2.1431,0.2252 0.25316,-1.2281 0.16294,-0.4057 1.14493,-1.4547 1.29564,0.4209 0.07117,1.85 -0.10662,0.4239 -0.51705,1.14239 1.86619,1.07745 0.73079,-1.01897 0.31387,-0.30437 1.63766,-0.8633 1.01239,0.9116 -0.68741,1.71892 -0.26985,0.34396 -0.93699,0.8333 1.26661,1.74335 1.08204,-0.63364 0.4105,-0.15035 1.8472,-0.12259 0.5542,1.24454 -1.3272,1.29072 -0.3864,0.20446 -1.1949,0.38015 z"
+         id="path2501" />
+      <circle
+         style="fill:#ffffff;stroke:#000000;stroke-width:0.264583"
+         id="path2503"
+         cx="0"
+         cy="0"
+         r="5.2916665" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       id="text2514"
+       transform="rotate(145,106.8831,57.831241)"
+       inkscape:export-filename="/home/pablo/programming/thebutlerdidit/webapp/logo.png"
+       inkscape:export-xdpi="120.12981"
+       inkscape:export-ydpi="120.12981"><textPath
+         xlink:href="#path2541"
+         id="textPath2543"><tspan
+           id="tspan2512"
+           style="font-size:1.76389px;stroke-width:0.264583">JVM THROUGHPUT™</tspan></textPath></text>
+    <circle
+       style="fill:none;stroke:none;stroke-width:0.0723688"
+       id="path2541"
+       cx="107.0155"
+       cy="57.555706"
+       r="5.8868208"
+       inkscape:export-filename="/home/pablo/programming/thebutlerdidit/webapp/logo.png"
+       inkscape:export-xdpi="120.12981"
+       inkscape:export-ydpi="120.12981" />
   </g>
 </svg>
