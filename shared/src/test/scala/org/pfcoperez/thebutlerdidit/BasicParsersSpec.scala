@@ -5,6 +5,7 @@ import NoWhitespace._
 import org.scalatest.Inside
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
+import model.WithUnits
 
 class BasicParsersSpec extends AnyFunSpec with Matchers with Inside {
 
@@ -31,15 +32,15 @@ class BasicParsersSpec extends AnyFunSpec with Matchers with Inside {
 
     it("should parse float numbers") {
       inside(parse("42.3", floatNumber(_))) {
-        case Parsed.Success(x, _) => assert(x === 42.3F)
+        case Parsed.Success(x, _) => assert(x === 42.3f)
       }
 
       inside(parse("-42.1", floatNumber(_))) {
-        case Parsed.Success(x, _) => assert(x === -42.1F)
+        case Parsed.Success(x, _) => assert(x === -42.1f)
       }
 
       inside(parse("+42.42", floatNumber(_))) {
-        case Parsed.Success(x, _) => assert(x === 42.42F)
+        case Parsed.Success(x, _) => assert(x === 42.42f)
       }
 
       inside(parse("42", floatNumber(_))) {
@@ -48,23 +49,23 @@ class BasicParsersSpec extends AnyFunSpec with Matchers with Inside {
     }
 
     it("should parse float numbers with units") {
-      inside(parse("42.3ms", floatWithUnits("ms")(_))) {
-        case Parsed.Success(WithUnits(x: Float, "ms"), _) => assert(x === 42.3F)
+      inside(parse("42.3ms", floatWithUnits(_))) {
+        case Parsed.Success(WithUnits(x: Float, "ms"), _) => assert(x === 42.3f)
       }
 
-      inside(parse("-42.1ms", floatWithUnits("ms")(_))) {
-        case Parsed.Success(WithUnits(x: Float, "ms"), _) => assert(x === -42.1F)
+      inside(parse("-42.1ms", floatWithUnits(_))) {
+        case Parsed.Success(WithUnits(x: Float, "ms"), _) => assert(x === -42.1f)
       }
 
-      inside(parse("+42.42ms", floatWithUnits("ms")(_))) {
-        case Parsed.Success(WithUnits(x: Float, "ms"), _) => assert(x === 42.42F)
+      inside(parse("+42.42ms", floatWithUnits(_))) {
+        case Parsed.Success(WithUnits(x: Float, "ms"), _) => assert(x === 42.42f)
       }
 
-      inside(parse("42.3m/s", floatWithUnits("ms")(_))) {
-        case _: Parsed.Failure =>
+      inside(parse("42.3m/s", floatWithUnits(_))) {
+        case Parsed.Success(WithUnits(x: Float, "m/s"), _) => assert(x === 42.3f)
       }
 
-      inside(parse("42.3", floatWithUnits("ms")(_))) {
+      inside(parse("42.3", floatWithUnits(_))) {
         case _: Parsed.Failure =>
       }
     }
@@ -83,7 +84,7 @@ class BasicParsersSpec extends AnyFunSpec with Matchers with Inside {
         case Parsed.Success(x: BigInt, _) => assert(x.toLong.toHexString === "badf00d2")
       }
 
-      def parserWithEnd[_ : P] = P(hexDec ~ End)
+      def parserWithEnd[_: P] = P(hexDec ~ End)
 
       assert(!parse("0x", parserWithEnd(_)).isSuccess)
       assert(!parse("BADF00D", parserWithEnd(_)).isSuccess)

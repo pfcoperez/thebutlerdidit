@@ -9,6 +9,8 @@ case class ThreadDescription(
     id: Int,
     jvmPriority: Int,
     osPriority: Int,
+    maybeCpuTime: Option[WithUnits[Float]],
+    maybeWallTime: Option[WithUnits[Float]],
     address: BigInt,
     osAddress: BigInt,
     status: SimplifiedStatus,
@@ -18,33 +20,36 @@ case class ThreadDescription(
 )
 
 object ThreadDescription {
-    sealed trait SimplifiedStatus {
-        def representation: String
-    }
+  sealed trait SimplifiedStatus {
+    def representation: String
+  }
 
-    object SimplifiedStatus {
-        def factories(rep: String): SimplifiedStatus = {
-            val static = Seq(
-                Runnable, WaitingForMonitor, WaitingOnCondition, Sleeping
-            ).map(x => x.representation -> x).toMap
+  object SimplifiedStatus {
+    def factories(rep: String): SimplifiedStatus = {
+      val static = Seq(
+        Runnable,
+        WaitingForMonitor,
+        WaitingOnCondition,
+        Sleeping
+      ).map(x => x.representation -> x).toMap
 
-            val tag = if (rep.startsWith("in")) WaitingForMonitor.representation else rep
+      val tag = if (rep.startsWith("in")) WaitingForMonitor.representation else rep
 
-            static(tag)
-        }
+      static(tag)
     }
+  }
 
-    case object Runnable extends SimplifiedStatus {
-        def representation: String = "runnable" 
-    }
-    case object WaitingOnCondition extends SimplifiedStatus {
-        def representation: String = "waiting on condition"
-    }
-    case object WaitingForMonitor extends SimplifiedStatus {
-        def representation: String = "waiting for monitor entry"
-    }
-    case object Sleeping extends SimplifiedStatus {
-        def representation: String = "sleeping"
-    }
-    
+  case object Runnable extends SimplifiedStatus {
+    def representation: String = "runnable"
+  }
+  case object WaitingOnCondition extends SimplifiedStatus {
+    def representation: String = "waiting on condition"
+  }
+  case object WaitingForMonitor extends SimplifiedStatus {
+    def representation: String = "waiting for monitor entry"
+  }
+  case object Sleeping extends SimplifiedStatus {
+    def representation: String = "sleeping"
+  }
+
 }
