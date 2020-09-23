@@ -3,20 +3,19 @@ package org.pfcoperez.thebutlerdidit
 import org.pfcoperez.thebutlerdidit.ThreadDumpParsers.parseReportString
 import scala.io.Source
 
-
 object ProcessInput extends App {
 
-    val inputStr =
-        Source.fromInputStream(System.in).getLines().mkString("\n")
+  val inputStr =
+    Source.fromInputStream(System.in).getLines().mkString("\n")
 
-    val parsedResult = parseReportString(inputStr)
+  val parsedResult = parseReportString(inputStr)
 
-    parsedResult.fold(
-        { case problem => println(problem) },
-        {
-            case (report, _) =>
-                println(report.asGraph.renderGraphviz)
-        }
-    )
+  parsedResult.fold(
+    { case problem => println(problem) },
+    {
+      case (report, _) =>
+        println(report.asGraph.renderGraphviz(true))
+    }
+  )
 
 }
