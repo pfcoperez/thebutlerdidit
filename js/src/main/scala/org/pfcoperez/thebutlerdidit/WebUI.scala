@@ -159,6 +159,39 @@ object WebUI {
       formDiv
     }
 
+    val renderModeSelectorDiv = wrappedInColumn(MdN(4)) {
+      val dropDownDiv = document.createElement("div")
+      dropDownDiv.setAttribute("class", "dropdown")
+
+      val button = document.createElement("button").asInstanceOf[Button]
+      button.setAttribute("class", "btn btn-secondary dropdown-toggle")
+      button.setAttribute("data-toggle", "dropdown")
+      button.setAttribute("aria-haspopup", "true")
+      button.setAttribute("aria-expanded", "false")
+      button.textContent = "Render mode"
+      button.id = "renderModeSelectionMenu"
+
+      val menu = document.createElement("div")
+      menu.setAttribute("class", "dropdown-menu")
+      menu.setAttribute("aria-labelledby", button.id)
+
+      def addMenuItem(option: String, active: Boolean = false): Unit = {
+        val entry = document.createElement("a").asInstanceOf[Link]
+        entry.setAttribute("class", "dropdown-item" + (if (active) " active" else ""))
+        entry.href = "#"
+        entry.textContent = option
+        menu.appendChild(entry)
+      }
+
+      addMenuItem("neato")
+      addMenuItem("dot", true)
+
+      dropDownDiv.appendChild(button)
+      dropDownDiv.appendChild(menu)
+
+      dropDownDiv
+    }
+
     def computeAndRenderResult: Unit = {
       val reportResult = processReport(inputTextNode.value, enableIsolatedNodes.checked)
       val dotReport    = reportResult.merge
@@ -200,6 +233,7 @@ object WebUI {
     textIODiv.appendChild(inputTextDiv)
     textIODiv.appendChild(outTextDiv)
     optionsDiv.appendChild(enableIsolatedDiv)
+    optionsDiv.appendChild(renderModeSelectorDiv)
     actionsDiv.appendChild(analyzeDiv)
     actionsDiv.appendChild(resetDiv)
     headerDiv.appendChild(iconDiv)
