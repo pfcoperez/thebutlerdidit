@@ -21,10 +21,10 @@ object WebUI {
     )
   }
 
-  case class State(previousSuccessfulTransformation: Boolean)
+  case class State(previousSuccessfulTransformation: Boolean, renderEngine: String)
 
   object State {
-    private var current: State = State(previousSuccessfulTransformation = false)
+    private var current: State = State(previousSuccessfulTransformation = false, renderEngine = "dot")
 
     def update(update: State => State): State =
       State.synchronized {
@@ -159,40 +159,7 @@ object WebUI {
       formDiv
     }
 
-    val renderModeSelectorDiv = wrappedInColumn(MdN(4)) {
-      val dropDownDiv = document.createElement("div")
-      dropDownDiv.setAttribute("class", "dropdown")
-
-      val button = document.createElement("button").asInstanceOf[Button]
-      button.setAttribute("class", "btn btn-secondary dropdown-toggle")
-      button.setAttribute("data-toggle", "dropdown")
-      button.setAttribute("aria-haspopup", "true")
-      button.setAttribute("aria-expanded", "false")
-      button.textContent = "Render mode"
-      button.id = "renderModeSelectionMenu"
-
-      val menu = document.createElement("div")
-      menu.setAttribute("class", "dropdown-menu")
-      menu.setAttribute("aria-labelledby", button.id)
-
-      def addMenuItem(option: String, active: Boolean = false): Unit = {
-        val entry = document.createElement("a").asInstanceOf[Link]
-        entry.setAttribute("class", "dropdown-item" + (if (active) " active" else ""))
-        entry.href = "#"
-        entry.textContent = option
-        menu.appendChild(entry)
-      }
-
-      addMenuItem("neato")
-      addMenuItem("dot", true)
-
-      dropDownDiv.appendChild(button)
-      dropDownDiv.appendChild(menu)
-
-      dropDownDiv
-    }
-
-    def computeAndRenderResult: Unit = {
+    def computeAndRenderResult(): Unit = {
       val reportResult = processReport(inputTextNode.value, enableIsolatedNodes.checked)
       val dotReport    = reportResult.merge
 
@@ -202,7 +169,7 @@ object WebUI {
       } else {
         outTextNode.setAttribute("class", "col-sm bg-success")
 
-        val vizOptions = Dynamic.literal(engine = "dot")
+        val vizOptions = Dynamic.literal(engine = State.getCurrent.renderEngine)
 
         viz.renderSVGElement(dotReport, vizOptions).toFuture.foreach { graphElement =>
           val prevResultTree = resultsDiv.childNodes
@@ -222,8 +189,41 @@ object WebUI {
       enableIsolatedNodes.disabled = !newState.previousSuccessfulTransformation
     }
 
-    analyzeButton.addEventListener("click", (e: dom.MouseEvent) => computeAndRenderResult)
-    enableIsolatedNodes.addEventListener("click", (e: dom.MouseEvent) => computeAndRenderResult)
+    val renderModeSelectorDiv = wrappedInColumn(MdN(8)) {
+      val buttonsGroupDiv = document.createElement("div").asInstanceOf[Div]
+      buttonsGroupDiv.style = "padding: 1em"
+      buttonsGroupDiv.setAttribute("class", "btn-group btn-group-toggle")
+      buttonsGroupDiv.setAttribute("data-toggle", "buttons")
+
+      def addButton(option: String, active: Boolean = false): Unit = {
+        val entry = document.createElement("label").asInstanceOf[Label]
+        entry.setAttribute("class", "btn btn-secondary" + (if (active) " active" else ""))
+        val entryInput = document.createElement("input").asInstanceOf[Input]
+        entryInput.`type` = "radio"
+        entryInput.checked = active
+        val text = document.createTextNode(option)
+        entry.appendChild(entryInput)
+        entry.appendChild(text)
+        buttonsGroupDiv.appendChild(entry)
+
+        entry.addEventListener(
+          "click",
+          { (_: dom.MouseEvent) =>
+            State.update(_.copy(renderEngine = option))
+            if (State.getCurrent.previousSuccessfulTransformation)
+              computeAndRenderResult()
+          }
+        )
+      }
+
+      addButton("neato")
+      addButton("dot", true)
+
+      buttonsGroupDiv
+    }
+
+    analyzeButton.addEventListener("click", (e: dom.MouseEvent) => computeAndRenderResult())
+    enableIsolatedNodes.addEventListener("click", (e: dom.MouseEvent) => computeAndRenderResult())
 
     resetButton.addEventListener(
       "click",
