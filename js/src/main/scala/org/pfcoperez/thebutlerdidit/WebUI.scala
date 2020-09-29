@@ -10,6 +10,7 @@ import jsfacades.Viz
 import ThreadDumpParsers.parseReportString
 
 import scala.concurrent.ExecutionContext.Implicits.global
+import org.scalajs.dom.raw.Text
 
 object WebUI {
 
@@ -111,7 +112,7 @@ object WebUI {
     val inputTextDiv = wrappedInColumn(MdN(7)) {
       inputTextNode.cols = 80
       inputTextNode.rows = 32
-      inputTextNode.setAttribute("style", "resize:none")
+      inputTextNode.setAttribute("style", "resize:none; width: 100%;")
       inputTextNode
     }
 
@@ -119,7 +120,7 @@ object WebUI {
     val outTextDiv = wrappedInColumn(MdN(5)) {
       outTextNode.cols = 50
       outTextNode.rows = 32
-      outTextNode.setAttribute("style", "resize:none")
+      outTextNode.setAttribute("style", "resize:none; width: 100%;")
       outTextNode.disabled = true
       outTextNode
     }
@@ -139,23 +140,24 @@ object WebUI {
     }
 
     val enableIsolatedNodes = document.createElement("input").asInstanceOf[Input]
-    val enableIsolatedDiv = wrappedInColumn(MdN(4)) {
-      val formDiv = document.createElement("div")
+    val enableIsolatedDiv = wrappedInColumn(MdN(5)) {
+      val formDiv = document.createElement("div").asInstanceOf[Div]
       formDiv.setAttribute("class", "form-check")
 
       enableIsolatedNodes.`type` = "checkbox"
       enableIsolatedNodes.checked = false
       enableIsolatedNodes.disabled = true
-      enableIsolatedNodes.id = "show-isolated"
+      enableIsolatedNodes.id = "showIsolated"
       enableIsolatedNodes.setAttribute("class", "form-check-input")
-      formDiv.appendChild(enableIsolatedNodes)
 
       val enableIsolatedNodesLabel = document.createElement("label").asInstanceOf[Label]
       enableIsolatedNodesLabel.textContent = "Include threads with no lock-relations"
       enableIsolatedNodesLabel.htmlFor = enableIsolatedNodes.id
       enableIsolatedNodesLabel.setAttribute("class", "form-check-label")
-      formDiv.appendChild(enableIsolatedNodesLabel)
+      enableIsolatedNodesLabel.style = "padding: 1.5em"
 
+      formDiv.appendChild(enableIsolatedNodesLabel)
+      formDiv.appendChild(enableIsolatedNodes)
       formDiv
     }
 
@@ -177,6 +179,7 @@ object WebUI {
             val childNode = prevResultTree(n)
             resultsDiv.removeChild(childNode)
           }
+
           resultsDiv.appendChild(graphElement)
         }
 
@@ -189,11 +192,20 @@ object WebUI {
       enableIsolatedNodes.disabled = !newState.previousSuccessfulTransformation
     }
 
-    val renderModeSelectorDiv = wrappedInColumn(MdN(8)) {
+    val renderModeSelectorDiv = wrappedInColumn(MdN(6)) {
+      val formDiv = document.createElement("div").asInstanceOf[Div]
+      formDiv.setAttribute("class", "form-check")
+
       val buttonsGroupDiv = document.createElement("div").asInstanceOf[Div]
       buttonsGroupDiv.style = "padding: 1em"
       buttonsGroupDiv.setAttribute("class", "btn-group btn-group-toggle")
       buttonsGroupDiv.setAttribute("data-toggle", "buttons")
+      buttonsGroupDiv.id = "renderSelector"
+
+      val label = document.createElement("label").asInstanceOf[Label]
+      label.setAttribute("class", "form-check-label")
+      label.htmlFor = buttonsGroupDiv.id
+      label.textContent = "Graphviz render mode:"
 
       def addButton(option: String, active: Boolean = false): Unit = {
         val entry = document.createElement("label").asInstanceOf[Label]
@@ -219,7 +231,10 @@ object WebUI {
       addButton("neato")
       addButton("dot", true)
 
-      buttonsGroupDiv
+      formDiv.appendChild(label)
+      formDiv.appendChild(buttonsGroupDiv)
+
+      formDiv
     }
 
     analyzeButton.addEventListener("click", (e: dom.MouseEvent) => computeAndRenderResult())
