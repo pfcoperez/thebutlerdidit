@@ -11,14 +11,39 @@ import ThreadDumpParsers.parseReportString
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import org.scalajs.dom.raw.Text
+import org.pfcoperez.thebutlerdidit.model.Report
+import org.pfcoperez.thebutlerdidit.datastructures.SparseGraph
+import org.pfcoperez.thebutlerdidit.datastructures.SparseGraph.RenderAttribute
 
 object WebUI {
 
   def processReport(reportStr: String, withIsolatedNodes: Boolean): Either[String, String] = {
     val result = parseReportString(reportStr)
+
+    def nodesGraphvizAttributes(report: Report): Report.ThreadId => Seq[RenderAttribute] = {
+      (threadId: Report.ThreadId) =>
+        val blockedThreads = report.deadLockElements.map(_.blockedThreadName)
+        val blockedAttributes = List(
+          RenderAttribute("fillcolor", "indianred"),
+          RenderAttribute("fontcolor", "white")
+        )
+        val regularAttributes = Nil
+        if (blockedThreads.contains(threadId)) blockedAttributes else regularAttributes
+    }
+
+    // def edgesGraphvizAttributes(report: Report): Report.ObjectReference => Seq[RenderAttribute] = {
+    //   (threadId: Report.ObjectReference) =>
+    //     val blockedThreads = report.deadLockElements.map(_.objectAddr.toString)
+    //     val blockedAttributes = List(
+    //       RenderAttribute("fontcolor", "indianred2")
+    //     )
+    //     val regularAttributes = Nil
+    //     if (blockedThreads.contains(threadId)) blockedAttributes else regularAttributes
+    // }
+
     result.fold(
       { case problem => Left(problem._3.trace().msg) },
-      { case (report, _) => Right(report.asGraph.renderGraphviz(withIsolatedNodes)) }
+      { case (report, _) => Right(report.asGraph.renderGraphviz(withIsolatedNodes, nodesGraphvizAttributes(report))) }
     )
   }
 

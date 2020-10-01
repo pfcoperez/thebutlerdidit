@@ -16,8 +16,7 @@ case class Report(threads: Seq[ThreadDescription], deadLockElements: Set[DeadLoc
 
   def asGraph: SparseGraph[ThreadId, ObjectReference] = {
 
-    def threadId(thread: ThreadDescription): String =
-      s"#${thread.id} ${thread.name}"
+    def threadId(thread: ThreadDescription): String = thread.name
 
     val objectToOwner = {
       for {
