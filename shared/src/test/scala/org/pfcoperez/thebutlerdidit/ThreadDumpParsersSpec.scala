@@ -12,7 +12,7 @@ class ThreadDumpParsersSpec extends AnyFunSpec with Matchers with Inside {
 
   describe("ThreadElementsParsers") {
     import ThreadDumpParsers.ThreadElementsParsers._
-    import ThreadDumpParsers.thread
+    import ThreadDumpParsers.{ deadLockElements, thread }
 
     it("should parse thread description lines") {
       import SingleLineWhitespace._
@@ -27,7 +27,7 @@ class ThreadDumpParsersSpec extends AnyFunSpec with Matchers with Inside {
         """"main" #1 prio=badf00d os_prio=0 tid=0x00007fb54004d000 nid=0x1c3d runnable [0x00007fb546c21000]""",
         """"main" #1 os_prio=0 tid=0x00007fb54004d000 nid=0x1c3d runnable [0x00007fb546c21000]""",
         """"main" #1 prio=5 tid=0x00007fb54004d000 nid=0x1c3d runnable [0x00007fb546c21000]""",
-        """"main" #1 prio=5 os_prio=0 tid=0x00007fb54004d000 nid=0x1c3d runnable [0x00007fb546c21000""",
+        """"main" #1 prio=5 os_prio=0 tid=0x00007fb54004d000 nid=0x1c3d runnable [0x00007fb546c21000"""
       )
 
       wrongLines.foreach { line =>
@@ -43,11 +43,22 @@ class ThreadDumpParsersSpec extends AnyFunSpec with Matchers with Inside {
       import MultiLineWhitespace._
 
       val result = parse(aThread, thread(_))
-      
+
       inside(result) {
         case Parsed.Success(x, _) =>
           x.lockedBy.size shouldBe 1
           x.locking.size shouldBe 3
+      }
+    }
+
+    it("should parse dead locks sections") {
+      import MultiLineWhitespace._
+
+      val result = parse(aDeadLocksSection, deadLockElements(_))
+
+      inside(result) {
+        case Parsed.Success(foundLocks, _) =>
+          foundLocks.size shouldBe 4
       }
     }
 
@@ -56,6 +67,93 @@ class ThreadDumpParsersSpec extends AnyFunSpec with Matchers with Inside {
 }
 
 object ThreadDumpParsersSpec {
+
+  val aDeadLocksSection =
+    """
+      |Found one Java-level deadlock:
+      |=============================
+      |"MissScarlett$":
+      |  waiting to lock monitor 0x00007f77e800a0e8 (object 0x00000000f6000e58, a org.pfcoperez.thebutlerdidit.SampleApp$Revolver$),
+      |  which is held by "ProfessorPlum$"
+      |"ProfessorPlum$":
+      |  waiting to lock monitor 0x00007f77b40036a8 (object 0x00000000f61024b8, a org.pfcoperez.thebutlerdidit.SampleApp$LeadPipe$),
+      |  which is held by "ColonelMustard$"
+      |"ColonelMustard$":
+      |  waiting to lock monitor 0x00007f77e000d3a8 (object 0x00000000f609df68, a org.pfcoperez.thebutlerdidit.SampleApp$Dagger$),
+      |  which is held by "RevGreen$"
+      |"RevGreen$":
+      |  waiting to lock monitor 0x00007f77e000afe8 (object 0x00000000f60c7e38, a org.pfcoperez.thebutlerdidit.SampleApp$Candlestick$),
+      |  which is held by "MissScarlett$"
+      |
+      |Java stack information for the threads listed above:
+      |===================================================
+      |"MissScarlett$":
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:29)
+      |	- waiting to lock <0x00000000f6000e58> (a org.pfcoperez.thebutlerdidit.SampleApp$Revolver$)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$MissScarlett$$anonfun$$lessinit$greater$1.$anonfun$apply$1(SampleApp.scala:51)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$MissScarlett$$anonfun$$lessinit$greater$1$$Lambda$5931/691456804.apply$mcV$sp(Unknown Source)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:30)
+      |	- locked <0x00000000f60c7e38> (a org.pfcoperez.thebutlerdidit.SampleApp$Candlestick$)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$MissScarlett$$anonfun$$lessinit$greater$1.apply$mcV$sp(SampleApp.scala:50)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$Suspect.run(SampleApp.scala:36)
+      |"ProfessorPlum$":
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:29)
+      |	- waiting to lock <0x00000000f61024b8> (a org.pfcoperez.thebutlerdidit.SampleApp$LeadPipe$)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$ProfessorPlum$$anonfun$$lessinit$greater$4.$anonfun$apply$7(SampleApp.scala:86)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$ProfessorPlum$$anonfun$$lessinit$greater$4$$Lambda$5928/198355539.apply$mcV$sp(Unknown Source)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:30)
+      |	- locked <0x00000000f6000e58> (a org.pfcoperez.thebutlerdidit.SampleApp$Revolver$)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$ProfessorPlum$$anonfun$$lessinit$greater$4.apply$mcV$sp(SampleApp.scala:82)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$Suspect.run(SampleApp.scala:36)
+      |"ColonelMustard$":
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:29)
+      |	- waiting to lock <0x00000000f609df68> (a org.pfcoperez.thebutlerdidit.SampleApp$Dagger$)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$ColonelMustard$$anonfun$$lessinit$greater$3.$anonfun$apply$5(SampleApp.scala:74)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$ColonelMustard$$anonfun$$lessinit$greater$3$$Lambda$5937/1438776930.apply$mcV$sp(Unknown Source)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:30)
+      |	- locked <0x00000000f61024b8> (a org.pfcoperez.thebutlerdidit.SampleApp$LeadPipe$)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$ColonelMustard$$anonfun$$lessinit$greater$3.apply$mcV$sp(SampleApp.scala:73)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$Suspect.run(SampleApp.scala:36)
+      |"RevGreen$":
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:29)
+      |	- waiting to lock <0x00000000f60c7e38> (a org.pfcoperez.thebutlerdidit.SampleApp$Candlestick$)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$RevGreen$$anonfun$$lessinit$greater$2.$anonfun$apply$3(SampleApp.scala:62)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$RevGreen$$anonfun$$lessinit$greater$2$$Lambda$5938/791771374.apply$mcV$sp(Unknown Source)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:30)
+      |	- locked <0x00000000f609df68> (a org.pfcoperez.thebutlerdidit.SampleApp$Dagger$)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$RevGreen$$anonfun$$lessinit$greater$2.apply$mcV$sp(SampleApp.scala:61)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$Suspect.run(SampleApp.scala:36)
+      |
+      |Found one Java-level deadlock:
+      |=============================
+      |"MrsWhite$":
+      |  waiting to lock monitor 0x00007f78e6c60508 (object 0x00000000f5f9b260, a org.pfcoperez.thebutlerdidit.SampleApp$Rope$),
+      |  which is held by "MrsPeakcock$"
+      |"MrsPeakcock$":
+      |  waiting to lock monitor 0x00007f77e80084b8 (object 0x00000000f6066928, a org.pfcoperez.thebutlerdidit.SampleApp$Wrench$),
+      |  which is held by "MrsWhite$"
+      |
+      |Java stack information for the threads listed above:
+      |===================================================
+      |"MrsWhite$":
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:29)
+      |	- waiting to lock <0x00000000f5f9b260> (a org.pfcoperez.thebutlerdidit.SampleApp$Rope$)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$MrsWhite$$anonfun$$lessinit$greater$6.$anonfun$apply$11(SampleApp.scala:106)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$MrsWhite$$anonfun$$lessinit$greater$6$$Lambda$5929/1502138185.apply$mcV$sp(Unknown Source)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:30)
+      |	- locked <0x00000000f6066928> (a org.pfcoperez.thebutlerdidit.SampleApp$Wrench$)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$MrsWhite$$anonfun$$lessinit$greater$6.apply$mcV$sp(SampleApp.scala:105)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$Suspect.run(SampleApp.scala:36)
+      |"MrsPeakcock$":
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:29)
+      |	- waiting to lock <0x00000000f6066928> (a org.pfcoperez.thebutlerdidit.SampleApp$Wrench$)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$MrsPeakcock$$anonfun$$lessinit$greater$5.$anonfun$apply$9(SampleApp.scala:97)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$MrsPeakcock$$anonfun$$lessinit$greater$5$$Lambda$5926/881916961.apply$mcV$sp(Unknown Source)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$.grabbingItem(SampleApp.scala:30)
+      |	- locked <0x00000000f5f9b260> (a org.pfcoperez.thebutlerdidit.SampleApp$Rope$)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$MrsPeakcock$$anonfun$$lessinit$greater$5.apply$mcV$sp(SampleApp.scala:93)
+      |	at org.pfcoperez.thebutlerdidit.SampleApp$Suspect.run(SampleApp.scala:36)
+    """.stripMargin.trim
 
   val aThread =
     """

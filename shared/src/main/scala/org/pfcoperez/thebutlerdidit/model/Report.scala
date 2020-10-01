@@ -3,7 +3,7 @@ package org.pfcoperez.thebutlerdidit.model
 import org.pfcoperez.thebutlerdidit.datastructures.SparseGraph
 import Report._
 
-case class Report(threads: Seq[ThreadDescription]) {
+case class Report(threads: Seq[ThreadDescription], deadLockElements: Set[DeadLockElement]) {
 
   // Method replacing `x.formatted("%x")` which seems to be buggy in Scala.js
   private def bigIntToHexStr(x: BigInt): String = {

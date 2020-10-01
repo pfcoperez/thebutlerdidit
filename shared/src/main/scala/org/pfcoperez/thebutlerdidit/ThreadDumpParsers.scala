@@ -8,6 +8,7 @@ import org.pfcoperez.thebutlerdidit.model.ObjectLockState.LockedObject
 import org.pfcoperez.thebutlerdidit.model.ObjectLockState.LockRequest
 import org.pfcoperez.thebutlerdidit.model.Report
 import org.pfcoperez.thebutlerdidit.model.WithUnits
+import org.pfcoperez.thebutlerdidit.model.DeadLockElement
 
 object ThreadDumpParsers {
   import BasicParsers._
@@ -149,11 +150,30 @@ object ThreadDumpParsers {
   def references[_: P](kind: String) = P(kind ~ StringIn("references", "refs") ~ ":" ~ intNumber)
   def jni[_: P]                      = P("JNI" ~ (references("global") | references("weak")))
 
+  def deadLockEntry[_: P] =
+    P(
+      threadName ~ ":" ~
+          "waiting to lock monitor" ~ hexDec ~ "(" ~
+          "object" ~ hexDec ~ "," ~ "a" ~ CharsWhile(_ != ')')
+        ~ ")" ~ "," ~ "which is held by" ~ threadName
+    ).map {
+      case (locked, _, objectAddr, owner) =>
+        DeadLockElement(locked, objectAddr, owner)
+    }
+
+  def deadLock[_: P] =
+    P(
+      "Found one Java-level deadlock:" ~ "=".rep(1) ~ deadLockEntry.rep(1) ~
+          "Java stack information for the threads listed above:" ~ "=".rep(1) ~ threadName ~ ":" ~ stackLine.rep
+    ).map(_._1.toSet)
+
+  def deadLockElements[_: P] = P(deadLock.rep(1)).map(_.toSet.flatten)
+
   def unusedTail[_: P] = P(AnyChar.rep ~ End)
 
   def report[_: P] =
-    P(header ~ threads ~ jvmThread.rep ~ jni ~ unusedTail.? ~ End).map { t =>
-      Report(t._1)
+    P(header ~ threads ~ jvmThread.rep ~ jni ~ deadLockElements.? ~ unusedTail.? ~ End).map { t =>
+      Report(t._1, t._4.getOrElse(Set.empty))
     }
 
   def parseReportString(str: String): Parsed[Report] = parse(str, report(_))

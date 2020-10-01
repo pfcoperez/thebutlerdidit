@@ -33,7 +33,7 @@ class ThreadDumpParsersJVMSpec extends AnyFunSpec with Matchers with Inside {
           val result = parse(contentsStr, report(_))
 
           inside(result) {
-            case Parsed.Success(Report(threads), _) =>
+            case Parsed.Success(Report(threads, _), _) =>
               assert(threads.size > 1)
           }
         }
