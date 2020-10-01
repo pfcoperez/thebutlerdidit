@@ -41,28 +41,46 @@ class SparseGraph[NodeTag, EdgeTag] private (
     addEdge(from, to, tag)
   }
 
-  def renderGraphviz(withIsolatedNodes: Boolean = false): String = {
+  def renderGraphviz(
+      withIsolatedNodes: Boolean = false,
+      nodesAttributes: NodeTag => Seq[RenderAttribute] = _ => Seq.empty,
+      edgesAttributes: EdgeTag => Seq[RenderAttribute] = _ => Seq.empty
+  ): String = {
 
-    val nodesStrs =
-      if (withIsolatedNodes)
-        nodes.keys.map { nodeTag =>
-          s""""$nodeTag";"""
+    def renderAttributes(attributes: Seq[RenderAttribute]): String =
+      attributes
+        .map { attribute =>
+          import attribute._
+          s"$key=$value"
         }
-      else Seq.empty
+        .mkString("[ ", ",", " ]")
+
+    val nodesStrs = nodes.keys.flatMap { nodeKey =>
+      val attributes = nodesAttributes(nodeKey)
+      if (attributes.nonEmpty || withIsolatedNodes) {
+        val attributesStr = renderAttributes(attributes)
+        Seq(s"""  "$nodeKey" $attributesStr;""")
+      } else Seq.empty
+    }
 
     val arcsStrs = for {
       (from, edges) <- nodes
       (to, labels)  <- edges
       label         <- labels
-    } yield s"""  "${from}" -> "$to" [ label="$label" ];"""
+    } yield {
+      val attributesStr = renderAttributes(
+        RenderAttribute("label", s""""$label"""") +: edgesAttributes(label)
+      )
+      s"""  "${from}" -> "$to" $attributesStr;"""
+    }
 
     s"""
         |digraph {
         |  overlap=false;
         |  node [shape=box,style=filled];
         |  sep = "+80,80";
-        |  ${nodesStrs.mkString("\n")}
-        |  ${arcsStrs.mkString("\n")}
+        |${nodesStrs.mkString("\n")}
+        |${arcsStrs.mkString("\n")}
         |}""".stripMargin
   }
 }
@@ -72,4 +90,6 @@ object SparseGraph {
 
   def empty[NodeTag, EdgeTag]: SparseGraph[NodeTag, EdgeTag] =
     new SparseGraph(Map.empty)
+
+  case class RenderAttribute(key: String, value: String)
 }
