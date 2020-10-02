@@ -58,7 +58,7 @@ class ThreadDumpParsersSpec extends AnyFunSpec with Matchers with Inside {
 
       inside(result) {
         case Parsed.Success(foundLocks, _) =>
-          foundLocks.size shouldBe 4
+          foundLocks.size shouldBe 6
       }
     }
 

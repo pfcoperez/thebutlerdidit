@@ -164,7 +164,7 @@ object ThreadDumpParsers {
   def deadLock[_: P] =
     P(
       "Found one Java-level deadlock:" ~ "=".rep(1) ~ deadLockEntry.rep(1) ~
-          "Java stack information for the threads listed above:" ~ "=".rep(1) ~ threadName ~ ":" ~ stackLine.rep
+          "Java stack information for the threads listed above:" ~ "=".rep(1) ~ (threadName ~ ":" ~ stackLine.rep).rep
     ).map(_._1.toSet)
 
   def deadLockElements[_: P] = P(deadLock.rep(1)).map(_.toSet.flatten)
