@@ -15,8 +15,29 @@ import org.pfcoperez.thebutlerdidit.model.Report
 import org.pfcoperez.thebutlerdidit.datastructures.SparseGraph
 import org.pfcoperez.thebutlerdidit.datastructures.SparseGraph.RenderAttribute
 
+/**
+  * This singleton object implements the UI running in the browser
+  * by manipulating the DOM directly. It depends on the multiplatform
+  * `jstack` output models and parsers which are part of this project as well as
+  * on both https://github.com/mdaines/viz.js and Twitter's Bootstrap CSS framework.
+  *
+  * It certainly can be refactored to make most of the generated components
+  * re-usable. If further development of more complex features happens,
+  * this technical debt can should be paid first.
+  */
 object WebUI {
 
+  /**
+    * This method takes a string containing the output from `jstack -l <PID>`
+    * and returns either an string containing a parsing errors (left) or the
+    * DOT Graphviz representation of the parsed dependencies tree.
+    *
+    * @param reportStr Output of `jstack -l <PID>`
+    * @param withIsolatedNodes Wether or not threads with no acquired locks and with
+    *                          no acquisition requests should be represented in the
+    *                          output.
+    * @return
+    */
   def processReport(reportStr: String, withIsolatedNodes: Boolean): Either[String, String] = {
     val result = parseReportString(reportStr)
 
@@ -31,27 +52,39 @@ object WebUI {
         if (blockedThreads.contains(threadId)) blockedAttributes else regularAttributes
     }
 
-    // def edgesGraphvizAttributes(report: Report): Report.ObjectReference => Seq[RenderAttribute] = {
-    //   (threadId: Report.ObjectReference) =>
-    //     val blockedThreads = report.deadLockElements.map(_.objectAddr.toString)
-    //     val blockedAttributes = List(
-    //       RenderAttribute("fontcolor", "indianred2")
-    //     )
-    //     val regularAttributes = Nil
-    //     if (blockedThreads.contains(threadId)) blockedAttributes else regularAttributes
-    // }
-
     result.fold(
       { case problem => Left(problem._3.trace().msg) },
       { case (report, _) => Right(report.asGraph.renderGraphviz(withIsolatedNodes, nodesGraphvizAttributes(report))) }
     )
   }
 
+  /**
+    * Application tate aside from the DOM, ideally no business logic state should be ingrained in the DOM,
+    * This UI was small and simple in the beginning so part of this state (isolated threads toggle)
+    * is in fact in the DOM future changes will fix that.
+    *
+    * Any new logic state should be part of the `State` case class as an attribute.
+    *
+    * @param previousSuccessfulTransformation Wether or not the UI is currently showing the DOT and graphic representation of a valid input.
+    * @param renderEngine Render engine for graphviz: "circo", "dot", "fdp", "neato", "osage", "twopi" ...
+    */
   case class State(previousSuccessfulTransformation: Boolean, renderEngine: String)
 
+  /**
+    * The state is contained in a singleton object which can be safely updated and read through the
+    * `update` and `getCurrent` methods. Concurrency safety is thus guaranteed.
+    */
   object State {
+    // Global app state (besides DOM)
     private var current: State = State(previousSuccessfulTransformation = false, renderEngine = "dot")
 
+    /**
+      * Safe atomic update method
+      *
+      * @param update Function taking the current state and providing a new one which becomes
+      *               the new global state. All this happens atomically.
+      * @return
+      */
     def update(update: State => State): State =
       State.synchronized {
         State.current = update(State.current)
@@ -61,6 +94,8 @@ object WebUI {
     def getCurrent: State =
       State.synchronized(current)
   }
+
+  // Helper classes to represent elements in the Bootstrap layout.
 
   sealed trait ColumnClass {
     def className: String
@@ -76,6 +111,13 @@ object WebUI {
     def className: String = s"col-md-$n"
   }
 
+  /**
+    * Method to wrap DOM elements in Bootstrap cells.
+    *
+    * @param columnClass
+    * @param element
+    * @return
+    */
   def wrappedInColumn(columnClass: ColumnClass)(element: => Element): Element = {
     val column = document.createElement("div")
     column.setAttribute("class", columnClass.className)
@@ -85,7 +127,10 @@ object WebUI {
 
   def main(args: Array[String]): Unit = {
 
+    // Creates an instance of VizJS Javascript library wrapper.
     val viz = new Viz()
+
+    // Rows in the Bootstrap grid
 
     val topLevelDiv = document.createElement("div")
     topLevelDiv.setAttribute("class", "container")
