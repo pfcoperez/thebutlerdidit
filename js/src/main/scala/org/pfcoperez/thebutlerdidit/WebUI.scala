@@ -183,7 +183,15 @@ object WebUI {
     val textDiv = wrappedInColumn(MdN(8)) {
       val textNode = document.createElement("p").asInstanceOf[Paragraph]
       textNode.setAttribute("class", "text-lg-center")
-      textNode.textContent = "Find your locks"
+      textNode.textContent = """
+          | This is a self contained web UI running in your browser which takes
+          | the output of `jstack -l <PID>` and spills out the graph
+          | of lock relations between <PID> process threads highlighting
+          | threads which participate in deadlocks.
+          |
+          | There is NO COMMUNICATION with a server, it works off-line and
+          | your private data is confined to your box.
+        """.stripMargin
       textNode.style = "padding: 2em"
       textNode
     }
