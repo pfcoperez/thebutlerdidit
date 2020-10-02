@@ -68,7 +68,12 @@ object WebUI {
     * @param previousSuccessfulTransformation Wether or not the UI is currently showing the DOT and graphic representation of a valid input.
     * @param renderEngine Render engine for graphviz: "circo", "dot", "fdp", "neato", "osage", "twopi" ...
     */
-  case class State(previousSuccessfulTransformation: Boolean, renderEngine: String)
+  case class State(
+      previousSuccessfulTransformation: Boolean,
+      renderEngine: String,
+      availableRenderEngines: Seq[String],
+      defaultRenderEngine: String
+  )
 
   /**
     * The state is contained in a singleton object which can be safely updated and read through the
@@ -76,7 +81,12 @@ object WebUI {
     */
   object State {
     // Global app state (besides DOM)
-    private var current: State = State(previousSuccessfulTransformation = false, renderEngine = "dot")
+    private var current: State = State(
+      previousSuccessfulTransformation = false,
+      renderEngine = "dot",
+      availableRenderEngines = Seq("circo", "dot", "fdp", "neato", "osage", "twopi"),
+      defaultRenderEngine = "dot"
+    )
 
     /**
       * Safe atomic update method
@@ -298,8 +308,10 @@ object WebUI {
         )
       }
 
-      addButton("neato")
-      addButton("dot", true)
+      val st = State.getCurrent
+      st.availableRenderEngines.foreach { engine =>
+        addButton(engine, engine == st.defaultRenderEngine)
+      }
 
       formDiv.appendChild(label)
       formDiv.appendChild(buttonsGroupDiv)
