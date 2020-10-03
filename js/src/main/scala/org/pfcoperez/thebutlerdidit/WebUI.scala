@@ -185,7 +185,7 @@ object WebUI {
       textNode.setAttribute("class", "text-lg-center")
       textNode.textContent = """
           | This is a self contained web UI running in your browser which takes
-          | the output of `jstack -l <PID>` and spills out the graph
+          | the output of `jstack -l <PID>` and spits out the graph
           | of lock relations between <PID> process threads highlighting
           | threads which participate in deadlocks.
           |

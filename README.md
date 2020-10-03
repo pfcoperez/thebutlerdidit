@@ -1,6 +1,6 @@
 # The butler did it!
 
-![Logo](webapp/logo.png)
+![Logo](docs/logo.png)
 
 ![Workflow badge](https://github.com/pfcoperez/thebutlerdidit/workflows/Scala%20CI/badge.svg)
 
