@@ -22,6 +22,12 @@ It also comes with a simple sparse graph implementation (which offers methods to
 
 The graphic UI is actually the driver of this project, the application I wanted to have to help me  with my daily challenges as software engineer. Ironically, the most curated parts of the project, its engines, are the: The reports parser, the ADT and the sparse graph DOT document generations and not the web UI.
 
+> _The Butler Did It is a compiler for jsack output into Graphviz DOT_
+
+[**Use it to analyze your thread dumps now**](https://pfcoperez.github.io/thebutlerdidit/) 
+
+![Demo](demo.gif)
+
 :warning: The parsers over-fit to the samples under https://github.com/pfcoperez/thebutlerdidit/tree/master/jvm/src/test/resources/samples , if you use this application and you find reports from `jstack` that are not parsed, I ask you to please open a PR uploading the sample :pray:. I will update the parser as soon as possible! 
 
 ## Features
