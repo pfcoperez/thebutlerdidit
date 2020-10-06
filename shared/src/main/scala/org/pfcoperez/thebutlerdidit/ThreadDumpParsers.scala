@@ -127,7 +127,7 @@ object ThreadDumpParsers {
   import ThreadElementsParsers._
 
   def thread[_: P] =
-    P(threadDescription ~ threadState ~ stackLine.rep ~ lockedOwnableSyncs).map {
+    P(threadDescription ~ threadState ~ stackLine.rep ~ lockedOwnableSyncs.?).map {
       case (thread, _, stackLines, _) =>
         val lockedBy = stackLines.collect {
           case Some(locked: LockRequest) => locked.address

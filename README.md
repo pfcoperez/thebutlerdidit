@@ -8,7 +8,7 @@
 This is a library and a set tools aimed to find performance issues derived from JVM monitors locks by taking the output yielded by
 
 ```
-jstack -l <PID> 
+jstack [-l] <PID>
 ```
 
 ... parsing it and generating useful representations of the lock dependencies between threads. 

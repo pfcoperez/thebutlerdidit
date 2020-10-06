@@ -28,11 +28,11 @@ import org.pfcoperez.thebutlerdidit.datastructures.SparseGraph.RenderAttribute
 object WebUI {
 
   /**
-    * This method takes a string containing the output from `jstack -l <PID>`
+    * This method takes a string containing the output from `jstack [-l] <PID>`
     * and returns either an string containing a parsing errors (left) or the
     * DOT Graphviz representation of the parsed dependencies tree.
     *
-    * @param reportStr Output of `jstack -l <PID>`
+    * @param reportStr Output of `jstack`
     * @param withIsolatedNodes Wether or not threads with no acquired locks and with
     *                          no acquisition requests should be represented in the
     *                          output.
@@ -185,7 +185,7 @@ object WebUI {
       textNode.setAttribute("class", "text-lg-center")
       textNode.textContent = """
           | This is a self contained web UI running in your browser which takes
-          | the output of `jstack -l <PID>` and spits out the graph
+          | the output of `jstack [-l] <PID>` and spits out the graph
           | of lock relations between <PID> process threads highlighting
           | threads which participate in deadlocks.
           |
