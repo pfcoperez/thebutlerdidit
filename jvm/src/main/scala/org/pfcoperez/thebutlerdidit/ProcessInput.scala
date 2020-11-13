@@ -12,9 +12,8 @@ object ProcessInput extends App {
 
   parsedResult.fold(
     { case problem => println(problem._3.trace().msg) },
-    {
-      case (report, _) =>
-        println(report.asGraph.renderGraphviz(true))
+    { case (report, _) =>
+      println(report.asGraph.renderGraphviz(true))
     }
   )
 

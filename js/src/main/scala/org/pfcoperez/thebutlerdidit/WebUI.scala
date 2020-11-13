@@ -15,8 +15,7 @@ import org.pfcoperez.thebutlerdidit.model.Report
 import org.pfcoperez.thebutlerdidit.datastructures.SparseGraph
 import org.pfcoperez.thebutlerdidit.datastructures.SparseGraph.RenderAttribute
 
-/**
-  * This singleton object implements the UI running in the browser
+/** This singleton object implements the UI running in the browser
   * by manipulating the DOM directly. It depends on the multiplatform
   * `jstack` output models and parsers which are part of this project as well as
   * on both https://github.com/mdaines/viz.js and Twitter's Bootstrap CSS framework.
@@ -27,8 +26,7 @@ import org.pfcoperez.thebutlerdidit.datastructures.SparseGraph.RenderAttribute
   */
 object WebUI {
 
-  /**
-    * This method takes a string containing the output from `jstack [-l] <PID>`
+  /** This method takes a string containing the output from `jstack [-l] <PID>`
     * and returns either an string containing a parsing errors (left) or the
     * DOT Graphviz representation of the parsed dependencies tree.
     *
@@ -58,8 +56,7 @@ object WebUI {
     )
   }
 
-  /**
-    * Application tate aside from the DOM, ideally no business logic state should be ingrained in the DOM,
+  /** Application tate aside from the DOM, ideally no business logic state should be ingrained in the DOM,
     * This UI was small and simple in the beginning so part of this state (isolated threads toggle)
     * is in fact in the DOM future changes will fix that.
     *
@@ -75,8 +72,7 @@ object WebUI {
       defaultRenderEngine: String
   )
 
-  /**
-    * The state is contained in a singleton object which can be safely updated and read through the
+  /** The state is contained in a singleton object which can be safely updated and read through the
     * `update` and `getCurrent` methods. Concurrency safety is thus guaranteed.
     */
   object State {
@@ -88,8 +84,7 @@ object WebUI {
       defaultRenderEngine = "dot"
     )
 
-    /**
-      * Safe atomic update method
+    /** Safe atomic update method
       *
       * @param update Function taking the current state and providing a new one which becomes
       *               the new global state. All this happens atomically.
@@ -121,8 +116,7 @@ object WebUI {
     def className: String = s"col-md-$n"
   }
 
-  /**
-    * Method to wrap DOM elements in Bootstrap cells.
+  /** Method to wrap DOM elements in Bootstrap cells.
     *
     * @param columnClass
     * @param element

@@ -1,15 +1,16 @@
-ThisBuild / scalaVersion     := "2.13.2"
-ThisBuild / sbtVersion       := "1.3.13"
+ThisBuild / scalaVersion := "2.13.2"
+ThisBuild / sbtVersion := "1.3.13"
 
 lazy val root = (project in file("."))
   .aggregate(thebutlerdidit.js, thebutlerdidit.jvm)
   .settings(
     publish := {},
-    publishLocal := {},
+    publishLocal := {}
   )
 
-lazy val thebutlerdidit = crossProject(JSPlatform, JVMPlatform).in(file(".")).
-  settings(
+lazy val thebutlerdidit = crossProject(JSPlatform, JVMPlatform)
+  .in(file("."))
+  .settings(
     name := "TheButlerDidIt",
     version := "0.1.0-SNAPSHOT",
     organization := "org.pfcoperez",
@@ -18,9 +19,9 @@ lazy val thebutlerdidit = crossProject(JSPlatform, JVMPlatform).in(file(".")).
   ).
   jvmSettings(
     // Add JVM-specific settings here
-  ).
-  jsSettings(
+  )
+  .jsSettings(
     // Add JS-specific settings here
     libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "1.1.0",
-    scalaJSUseMainModuleInitializer := true,
+    scalaJSUseMainModuleInitializer := true
   )

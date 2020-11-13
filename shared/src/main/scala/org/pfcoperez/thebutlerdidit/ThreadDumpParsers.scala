@@ -24,9 +24,8 @@ object ThreadDumpParsers {
       P((digits ~ "." ~ digits).map { case (i, f) => s"$i.$f".toFloat })
 
     def floatWithUnits[_: P] =
-      P(floatNumber ~ CharsWhileIn("a-zA-Z/*").!).map {
-        case (magnitude, unit) =>
-          WithUnits(magnitude, unit)
+      P(floatNumber ~ CharsWhileIn("a-zA-Z/*").!).map { case (magnitude, unit) =>
+        WithUnits(magnitude, unit)
       }
 
     def hexDec[_: P] =
@@ -91,8 +90,8 @@ object ThreadDumpParsers {
     def threadState[_: P] =
       P(
         "java.lang.Thread.State:" ~ (
-              "NEW" | "RUNNABLE" | "BLOCKED" | "WAITING" | "TIMED_WAITING" | "TERMINATED"
-            ).! ~ parameters.?
+          "NEW" | "RUNNABLE" | "BLOCKED" | "WAITING" | "TIMED_WAITING" | "TERMINATED"
+        ).! ~ parameters.?
       ).map(_._1)
 
     def stackFrame[_: P] = P("at" ~ method)
@@ -105,18 +104,17 @@ object ThreadDumpParsers {
     def lockState[_: P] =
       P(
         "-" ~ StringIn(
-              "locked",
-              "waiting to lock",
-              "waiting to re-lock in wait()",
-              "waiting on",
-              "parking to wait for"
-            ).! ~ addressAndClass
-      ).map {
-        case (representation: String, (maybeAddress: Option[BigInt], maybeClassName: Option[String])) =>
-          for {
-            address   <- maybeAddress
-            className <- maybeClassName
-          } yield ObjectLockState.factories(representation)(address, className)
+          "locked",
+          "waiting to lock",
+          "waiting to re-lock in wait()",
+          "waiting on",
+          "parking to wait for"
+        ).! ~ addressAndClass
+      ).map { case (representation: String, (maybeAddress: Option[BigInt], maybeClassName: Option[String])) =>
+        for {
+          address   <- maybeAddress
+          className <- maybeClassName
+        } yield ObjectLockState.factories(representation)(address, className)
       }
 
     def stackLine[_: P] = P((stackFrame | "- None" | "No compile task").!.map(_ => None) | lockState)
@@ -127,18 +125,17 @@ object ThreadDumpParsers {
   import ThreadElementsParsers._
 
   def thread[_: P] =
-    P(threadDescription ~ threadState ~ stackLine.rep ~ lockedOwnableSyncs.?).map {
-      case (thread, _, stackLines, _) =>
-        val lockedBy = stackLines.collect {
-          case Some(locked: LockRequest) => locked.address
-        }
-        val locking = stackLines.collect {
-          case Some(locked: LockedObject) => locked.address
-        }
-        thread.copy(
-          lockedBy = lockedBy.toSet,
-          locking = locking.toSet
-        )
+    P(threadDescription ~ threadState ~ stackLine.rep ~ lockedOwnableSyncs.?).map { case (thread, _, stackLines, _) =>
+      val lockedBy = stackLines.collect { case Some(locked: LockRequest) =>
+        locked.address
+      }
+      val locking = stackLines.collect { case Some(locked: LockedObject) =>
+        locked.address
+      }
+      thread.copy(
+        lockedBy = lockedBy.toSet,
+        locking = locking.toSet
+      )
     }
 
   def header[_: P] = P(CharsWhile(_ != '"'))
@@ -153,18 +150,17 @@ object ThreadDumpParsers {
   def deadLockEntry[_: P] =
     P(
       threadName ~ ":" ~
-          "waiting to lock monitor" ~ hexDec ~ "(" ~
-          "object" ~ hexDec ~ "," ~ "a" ~ CharsWhile(_ != ')')
+        "waiting to lock monitor" ~ hexDec ~ "(" ~
+        "object" ~ hexDec ~ "," ~ "a" ~ CharsWhile(_ != ')')
         ~ ")" ~ "," ~ "which is held by" ~ threadName
-    ).map {
-      case (locked, _, objectAddr, owner) =>
-        DeadLockElement(locked, objectAddr, owner)
+    ).map { case (locked, _, objectAddr, owner) =>
+      DeadLockElement(locked, objectAddr, owner)
     }
 
   def deadLock[_: P] =
     P(
       "Found one Java-level deadlock:" ~ "=".rep(1) ~ deadLockEntry.rep(1) ~
-          "Java stack information for the threads listed above:" ~ "=".rep(1) ~ (threadName ~ ":" ~ stackLine.rep).rep
+        "Java stack information for the threads listed above:" ~ "=".rep(1) ~ (threadName ~ ":" ~ stackLine.rep).rep
     ).map(_._1.toSet)
 
   def deadLockElements[_: P] = P(deadLock.rep(1)).map(_.toSet.flatten)
