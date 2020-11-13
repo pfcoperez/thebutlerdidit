@@ -25,17 +25,15 @@ case class Report(threads: Seq[ThreadDescription], deadLockElements: Set[DeadLoc
       } yield ownedObject -> threadId(thread)
     }.toMap
 
-    threads.foldLeft(SparseGraph.empty[ThreadId, ObjectReference]) {
-      case (graph, thread) =>
-        val to = threadId(thread)
-        thread.lockedBy.foldLeft(graph + to) {
-          case (current, objAddr) =>
-            val hexStr = bigIntToHexStr(objAddr)
-            objectToOwner.get(objAddr).map { from =>
-              current + (from -> hexStr -> to)
-            } getOrElse (current)
+    threads.foldLeft(SparseGraph.empty[ThreadId, ObjectReference]) { case (graph, thread) =>
+      val to = threadId(thread)
+      thread.lockedBy.foldLeft(graph + to) { case (current, objAddr) =>
+        val hexStr = bigIntToHexStr(objAddr)
+        objectToOwner.get(objAddr).map { from =>
+          current + (from -> hexStr -> to)
+        } getOrElse (current)
 
-        }
+      }
     }
   }
 }

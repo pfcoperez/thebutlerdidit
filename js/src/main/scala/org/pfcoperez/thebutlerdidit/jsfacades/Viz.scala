@@ -9,5 +9,5 @@ import org.scalajs.dom.Element
 @js.native
 @JSGlobal
 class Viz extends js.Object {
-    def renderSVGElement(src: String, options: js.Object = js.Object()): Promise[Element] = js.native
+  def renderSVGElement(src: String, options: js.Object = js.Object()): Promise[Element] = js.native
 }

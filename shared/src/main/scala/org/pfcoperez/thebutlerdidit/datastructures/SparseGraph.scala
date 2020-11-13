@@ -29,10 +29,10 @@ class SparseGraph[NodeTag, EdgeTag] private (
     val currentEdges     = currentFromEdges.getOrElse(to, Set.empty)
     new SparseGraph(
       nodes + (
-            from -> (currentFromEdges + (
-                      to -> (currentEdges + tag)
-                    ))
-          )
+        from -> (currentFromEdges + (
+          to -> (currentEdges + tag)
+        ))
+      )
     )
   }
 
