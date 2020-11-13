@@ -19,8 +19,7 @@ class ThreadDumpParsersSpec extends AnyFunSpec with Matchers with Inside {
 
       val threadDescriptionLine = aThread.lines.toSeq.dropWhile(_ == "").head
 
-      inside(parse(threadDescriptionLine, threadDescription(_))) {
-        case Parsed.Success(x, _) =>
+      inside(parse(threadDescriptionLine, threadDescription(_))) { case Parsed.Success(x, _) =>
       }
 
       val wrongLines = Seq(
@@ -44,10 +43,9 @@ class ThreadDumpParsersSpec extends AnyFunSpec with Matchers with Inside {
 
       val result = parse(aThread, thread(_))
 
-      inside(result) {
-        case Parsed.Success(x, _) =>
-          x.lockedBy.size shouldBe 1
-          x.locking.size shouldBe 3
+      inside(result) { case Parsed.Success(x, _) =>
+        x.lockedBy.size shouldBe 1
+        x.locking.size shouldBe 3
       }
     }
 
@@ -56,9 +54,8 @@ class ThreadDumpParsersSpec extends AnyFunSpec with Matchers with Inside {
 
       val result = parse(aDeadLocksSection, deadLockElements(_))
 
-      inside(result) {
-        case Parsed.Success(foundLocks, _) =>
-          foundLocks.size shouldBe 6
+      inside(result) { case Parsed.Success(foundLocks, _) =>
+        foundLocks.size shouldBe 6
       }
     }
 
