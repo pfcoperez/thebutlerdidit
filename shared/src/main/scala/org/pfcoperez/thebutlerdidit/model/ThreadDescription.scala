@@ -16,8 +16,10 @@ case class ThreadDescription(
     status: SimplifiedStatus,
     stackPointer: BigInt,
     lockedBy: Set[BigInt] = Set.empty,
-    locking: Set[BigInt] = Set.empty
-)
+    ownedInstances: Map[BigInt, String] = Map.empty
+) {
+  def locking: Set[BigInt] = ownedInstances.keySet
+}
 
 object ThreadDescription {
   sealed trait SimplifiedStatus {

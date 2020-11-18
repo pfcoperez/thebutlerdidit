@@ -129,12 +129,13 @@ object ThreadDumpParsers {
       val lockedBy = stackLines.collect { case Some(locked: LockRequest) =>
         locked.address
       }
-      val locking = stackLines.collect { case Some(locked: LockedObject) =>
-        locked.address
+      val ownedInstances = stackLines.collect { case Some(locked: LockedObject) =>
+        import locked._
+        address -> className
       }
       thread.copy(
         lockedBy = lockedBy.toSet,
-        locking = locking.toSet
+        ownedInstances = ownedInstances.toMap
       )
     }
 
@@ -169,7 +170,8 @@ object ThreadDumpParsers {
 
   def report[_: P] =
     P(header ~ threads ~ jvmThread.rep ~ jni ~ deadLockElements.? ~ unusedTail.? ~ End).map { t =>
-      Report(t._1, t._4.getOrElse(Set.empty))
+      val referenceToClass = t._1.foldLeft(Map.empty[BigInt, String])(_ ++ _.ownedInstances)
+      Report(t._1, t._4.getOrElse(Set.empty), referenceToClass)
     }
 
   def parseReportString(str: String): Parsed[Report] = parse(str, report(_))
