@@ -3,7 +3,11 @@ package org.pfcoperez.thebutlerdidit.model
 import org.pfcoperez.thebutlerdidit.datastructures.SparseGraph
 import Report._
 
-case class Report(threads: Seq[ThreadDescription], deadLockElements: Set[DeadLockElement]) {
+case class Report(
+    threads: Seq[ThreadDescription],
+    deadLockElements: Set[DeadLockElement],
+    referenceToClass: Map[BigInt, String]
+) {
 
   def asGraph: SparseGraph[ThreadId, ObjectReference] = {
 
