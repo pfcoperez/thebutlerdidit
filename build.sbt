@@ -14,7 +14,7 @@ lazy val thebutlerdidit = crossProject(JSPlatform, JVMPlatform)
     name := "TheButlerDidIt",
     version := "0.1.0-SNAPSHOT",
     organization := "org.pfcoperez",
-    libraryDependencies += "org.scalatest" %%% "scalatest" % "3.2.9" % Test,
+    libraryDependencies += "org.scalatest" %%% "scalatest" % "3.2.10" % Test,
     libraryDependencies += "com.lihaoyi" %%% "fastparse" % "2.3.2",
   ).
   jvmSettings(
