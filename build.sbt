@@ -14,14 +14,14 @@ lazy val thebutlerdidit = crossProject(JSPlatform, JVMPlatform)
     name := "TheButlerDidIt",
     version := "0.1.0-SNAPSHOT",
     organization := "org.pfcoperez",
-    libraryDependencies += "org.scalatest" %%% "scalatest" % "3.2.10" % Test,
-    libraryDependencies += "com.lihaoyi" %%% "fastparse" % "2.3.2",
+    libraryDependencies += "org.scalatest" %%% "scalatest" % "3.2.9" % Test,
+    libraryDependencies += "com.lihaoyi" %%% "fastparse" % "2.3.3",
   ).
   jvmSettings(
     // Add JVM-specific settings here
   )
   .jsSettings(
     // Add JS-specific settings here
-    libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "1.1.0",
+    libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "1.2.0",
     scalaJSUseMainModuleInitializer := true
   )
