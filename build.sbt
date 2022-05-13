@@ -22,6 +22,6 @@ lazy val thebutlerdidit = crossProject(JSPlatform, JVMPlatform)
   )
   .jsSettings(
     // Add JS-specific settings here
-    libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "2.0.0",
+    libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "2.2.0",
     scalaJSUseMainModuleInitializer := true
   )
