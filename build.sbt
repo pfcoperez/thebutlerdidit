@@ -15,7 +15,7 @@ lazy val thebutlerdidit = crossProject(JSPlatform, JVMPlatform)
     version := "0.1.0-SNAPSHOT",
     organization := "org.pfcoperez",
     libraryDependencies += "org.scalatest" %%% "scalatest" % "3.2.10" % Test,
-    libraryDependencies += "com.lihaoyi" %%% "fastparse" % "2.3.3",
+    libraryDependencies += "com.lihaoyi" %%% "fastparse" % "3.0.1",
   ).
   jvmSettings(
     // Add JVM-specific settings here
